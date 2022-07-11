@@ -1,0 +1,124 @@
+name: Verilator Verification Features Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.make_matrix.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          clean: false
+
+      - name: Make build matrix
+        id: make_matrix
+        run: echo "::set-output name=matrix::$(ls verilator | jq -R -s -c 'split("\n")[:-1]')"
+
+  test:
+    needs: matrix
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        VERILATOR_BRANCH: ${{fromJson(needs.matrix.outputs.matrix)}}
+
+    env:
+      CCACHE_COMPRESS: 1
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+      CCACHE_LIMIT_MULTIPLE: 0.95
+      CCACHE_MAXSIZE: 250M
+      VERILATOR_ARCHIVE: ${{ matrix.VERILATOR_BRANCH }}.tar.gz
+
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install bison flex
+        sudo apt-get -y install ccache
+        sudo apt-get -y install python3-pip python3-setuptools
+        sudo pip3 install jinja2
+        sudo pip3 install robotframework==3.2.2
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        fetch-depth: 0
+        clean: false
+
+    - name: Cache $CCACHE_DIR
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.CCACHE_DIR }}
+        key: ${{ matrix.VERILATOR_BRANCH }}
+
+    - name: Build Verilator
+      working-directory: verilator/${{ matrix.VERILATOR_BRANCH }}
+      run: |
+        git show -q
+        autoconf
+        ./configure
+        make -j$(nproc)
+        sudo make install
+
+    - name: Generate Robot tests files
+      run: ./gen-tests ${{ matrix.VERILATOR_BRANCH }}
+
+    - name: Run tests
+      run: robot --report NONE --log NONE --output output-${{ matrix.VERILATOR_BRANCH }}.xml robot_tests \
+           || [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
+
+    - name: Upload test output
+      uses: actions/upload-artifact@v2
+      with:
+        path: output-${{ matrix.VERILATOR_BRANCH }}.xml
+        name: output-${{ matrix.VERILATOR_BRANCH }}.xml
+  
+  report:
+    needs: [test]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download test output
+      uses: actions/download-artifact@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install python3-pip python3-setuptools
+        sudo pip3 install robotframework==3.2.2
+
+    - name: Create report
+      run: rebot output-*.xml
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: robot_logs
+        path: |
+          report.html
+          log.html
+
+    - name: Deploy to GH Pages
+      if: github.ref == 'refs/heads/main'
+      run: |
+        mkdir deploy
+        mv output-*.xml log.html deploy
+        mv report.html deploy/index.html
+        touch deploy/.nojekyll
+        cd deploy
+        git init
+        cp ../.git/config ./.git/config
+        git add .
+        git config --local user.email "push@gha"
+        git config --local user.name "GHA"
+        git commit -am "update ${{ github.sha }}"
+        git push -u origin +HEAD:gh-pages
