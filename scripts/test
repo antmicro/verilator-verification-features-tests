@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+REPO_DIR=$(dirname $( cd $(dirname $0) && pwd ))
+
+TEST_SUITE=$1
+shift
+TEST=$1
+shift
+
+TEST_FILE=$REPO_DIR/tests/$TEST_SUITE/$TEST.sv
+
+OUT_DIR=$REPO_DIR/out/$TEST_SUITE/$TEST
+mkdir -p $OUT_DIR
+
+verilator --cc $TEST_FILE $REPO_DIR/src/main.cpp -Mdir $OUT_DIR --prefix Vtop --exe $@
+make -C $OUT_DIR -f Vtop.mk -j$(nproc)
+$OUT_DIR/Vtop

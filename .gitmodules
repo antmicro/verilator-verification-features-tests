@@ -1,0 +1,11 @@
+[submodule "verilator/master"]
+	path = verilator/master
+	url = ../../verilator/verilator
+[submodule "verilator/randomize-constraints"]
+	path = verilator/randomize-constraints
+	url = ../verilator-1
+	branch = randomize-constraints
+[submodule "verilator/test-plusargs-variable"]
+	path = verilator/test-plusargs-variable
+	url = ../verilator-1
+	branch = test-plusargs-variable

@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+from jinja2 import Template
+from glob import glob
+import sys
+import os
+
+with open('templates/suite.robot', 'r') as t:
+    suite_tmpl = Template(t.read())
+
+with open('templates/default.robot', 'r') as t:
+    default_tmpl = Template(t.read())
+
+branch_filter = sys.argv[1:]
+branches = os.listdir('verilator')
+test_suites = os.listdir('tests')
+suite_to_branch = { suite: suite if suite in branches else 'master' for suite in test_suites }
+
+os.makedirs('robot_tests', exist_ok=True)
+
+print('Generating:    (suite -> branch)')
+for suite in test_suites:
+    branch = suite_to_branch[suite]
+    if len(branch_filter) > 0 and branch not in branch_filter:
+        continue
+    print('   ', suite, '->', branch)
+
+    test_cases = []
+    template = default_tmpl
+    tmpl_path = 'templates/' + suite + '.robot'
+    if os.path.exists(tmpl_path):
+        with open(tmpl_path, 'r') as t:
+            template = Template(t.read())
+
+    for test in sorted(glob('tests/' + suite + '/*')):
+        test = os.path.basename(test)
+        test = os.path.splitext(test)[0]
+        os.makedirs('out/' + suite + '/' + test, exist_ok=True)
+        test_cases.append(template.render(verilator_root='verilator/' + branch, test_suite=suite, test=test, tags=branch))
+
+    with open(suite + '.robot', 'w') as t:
+        t.write(suite_tmpl.render(test_cases='\n'.join(test_cases)))

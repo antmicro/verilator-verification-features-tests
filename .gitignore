@@ -1,0 +1,7 @@
+*.xml
+*.html
+*.robot
+
+out
+
+robot_tests
