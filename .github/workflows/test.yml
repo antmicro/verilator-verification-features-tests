@@ -105,6 +105,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        ref: gh-pages
         fetch-depth: 0
         clean: false
 
@@ -119,7 +120,7 @@ jobs:
 
     - name: Create report
       run: |
-        rebot --merge output-*/*.xml || \
+        rebot --merge --report index.html output-*/*.xml || \
         [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
 
     - name: Upload artifacts
@@ -133,15 +134,9 @@ jobs:
     - name: Deploy to GH Pages
       if: github.ref == 'refs/heads/main'
       run: |
-        mkdir deploy
-        mv log.html deploy
-        mv report.html deploy/index.html
-        touch deploy/.nojekyll
-        cd deploy
-        git init
-        cp ../.git/config ./.git/config
-        git add .
+        touch .nojekyll
+        git add *.html
         git config --local user.email "push@gha"
         git config --local user.name "GHA"
         git commit -am "update ${{ github.sha }}"
-        git push -u origin +HEAD:gh-pages
+        git push -u origin gh-pages
