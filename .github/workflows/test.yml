@@ -8,6 +8,7 @@ on:
 
 jobs:
   matrix:
+    name: Generate test matrix
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.make_matrix.outputs.matrix }}
@@ -24,6 +25,7 @@ jobs:
         run: echo "::set-output name=matrix::$(ls verilator | jq -R -s -c 'split("\n")[:-1]')"
 
   test:
+    name: Test branch ${{ matrix.VERILATOR_BRANCH }}
     needs: matrix
     runs-on: ubuntu-latest
 
@@ -98,6 +100,7 @@ jobs:
         run: GITHUB_TOKEN='${{ github.token }}' gh pr merge '${{ github.event.pull_request.html_url }}' --squash
 
   report:
+    name: Generate test report
     needs: [test]
     runs-on: ubuntu-latest
 
