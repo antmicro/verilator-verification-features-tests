@@ -5,7 +5,7 @@
    *** End of description
 */
 module top (
-    output logic o
+    output logic o,
     input logic i
 );
 
