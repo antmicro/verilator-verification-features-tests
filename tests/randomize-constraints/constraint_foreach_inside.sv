@@ -11,14 +11,21 @@ class Cls;
   // Example end
 endclass
 
-module top ();
+module top (
+    input clk
+);
     Cls obj;
     initial begin
-       int success;
-       obj= new;
-       success = obj.randomize();
-       for (int i = 0; i < 5; i++) begin
-         $display("A[%d] = %0d", i, obj.A[i]);
-       end
+        int success;
+        for (int i = 0; i < 50; i++) begin
+             obj= new;
+             success = obj.randomize();
+             for (int i = 0; i < 5; i++) begin
+                 $display("A[%d] = %0d", i, obj.A[i]);
+             end
+             assert (success == 1) else
+                 $error("Randomize failed with %d", success);
+        end
+        $finish;
     end
 endmodule
