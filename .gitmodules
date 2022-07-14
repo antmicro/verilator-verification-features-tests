@@ -5,7 +5,7 @@
 	path = verilator/randomize-constraints
 	url = ../verilator-1
 	branch = randomize-constraints
-[submodule "verilator/test-plusargs-variable"]
-	path = verilator/test-plusargs-variable
+[submodule "verilator/wildcard-associative"]
+	path = verilator/wildcard-associative
 	url = ../verilator-1
-	branch = test-plusargs-variable
+	branch = wildcard-associative
