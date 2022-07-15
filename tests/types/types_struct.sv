@@ -5,7 +5,7 @@
    *** End of description
 */
 
-module top ();
+module top (input logic clk);
 
    // Example
     typedef struct {
@@ -15,4 +15,6 @@ module top ();
    // Example end
 
     complex_t s1;
+
+    initial $finish;
 endmodule

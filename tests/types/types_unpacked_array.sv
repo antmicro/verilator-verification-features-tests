@@ -10,7 +10,7 @@ class Cls;
 endclass
 // Example end
 
-module top ();
+module top (input logic clk);
     Cls obj;
     initial begin
        int success;
@@ -20,4 +20,5 @@ module top ();
          $display("a[%d] = %0b", i, obj.a[i]);
        end
     end
+    $finish;
 endmodule

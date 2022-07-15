@@ -5,7 +5,7 @@
    *** End of description
 */
 
-module top ();
+module top (input logic clk);
 
    // Example
    int array [*] = '{default:255};
@@ -14,6 +14,7 @@ module top ();
      array[1] = 0;
      array[1]++;
      $display("array[1] = %0b", array[1]);
+     $finish;
     end
 
 endmodule
