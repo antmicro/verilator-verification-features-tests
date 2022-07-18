@@ -5,12 +5,15 @@
    *** End of description
 */
 module top (
-    output logic o,
-    input logic i
+    input logic clk,
+    output logic o
 );
 
     // Example:
-	assign (weak0, weak1) o = i;
+	assign (weak0, weak1) o = clk;
     // Example end
-
+   always begin
+      if (o == 1)
+        $finish;
+   end
 endmodule
