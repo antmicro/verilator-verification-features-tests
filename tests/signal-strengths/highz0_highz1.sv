@@ -13,7 +13,7 @@ module top (
 	assign (highz0, highz1) o = clk;
     // Example end
    always begin
-      if (o == 1)
+      if (o)
         $finish;
    end
 endmodule

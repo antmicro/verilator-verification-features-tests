@@ -13,7 +13,7 @@ module top (
 	assign (strong1, strong1) o = clk;
     // Example end
    always begin
-      if (o == 1)
+      if (o)
         $finish;
    end
 endmodule
