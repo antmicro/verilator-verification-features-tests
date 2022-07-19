@@ -10,10 +10,10 @@ module top (
 );
 
     // Example:
-	assign (weak0, weak1) o = clk;
+	assign (highz0, weak1) o = clk;
     // Example end
    always begin
-      if (o)
+      if (o == z)
         $finish;
    end
 endmodule
