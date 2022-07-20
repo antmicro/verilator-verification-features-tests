@@ -9,3 +9,6 @@
 	path = verilator/wildcard-associative
 	url = ../verilator-1
 	branch = wildcard-associative
+[submodule "verilator/signal-strengths"]
+	path = verilator/signal-strengths
+	url = git@github.com:antmicro/verilator-1.git
