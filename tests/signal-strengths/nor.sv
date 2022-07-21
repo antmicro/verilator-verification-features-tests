@@ -13,7 +13,7 @@ module top (
    nor (highz1, strong0) n1(o, clk, 0);
     // Example end
    always begin
-      if (o == 1'z)
+      if (o === 1'z)
         $finish;
    end
 endmodule
