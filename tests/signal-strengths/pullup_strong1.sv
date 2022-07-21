@@ -10,10 +10,9 @@ module top (
 );
 
     // Example:
-	assign (highz0, weak1) o = clk;
-    // Example end
+   pullup (strong1) (o);
    always begin
-      if (o == 1'z)
+      if (o)
         $finish;
    end
 endmodule

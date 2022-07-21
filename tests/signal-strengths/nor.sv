@@ -9,8 +9,8 @@ module top (
     output logic o
 );
 
-    // Example:
-	assign (highz0, weak1) o = clk;
+    // Example from 28.3.2:
+   nor (highz1, strong0) n1(o, clk, 0);
     // Example end
    always begin
       if (o == 1'z)
