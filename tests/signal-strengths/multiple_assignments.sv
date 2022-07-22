@@ -1,6 +1,7 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
+   This test tests combination of 2 signals with default strengths.
 
    *** End of description
 */

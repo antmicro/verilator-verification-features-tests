@@ -1,6 +1,7 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
+   This test tests if stronger signal overwrites the weaker.
 
    *** End of description
 */

@@ -1,7 +1,7 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
-
+   This test tests if stronger signal replaces weaker.
    *** End of description
 */
 module top (

@@ -1,6 +1,7 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
+   This test tests if Verilator throws error on illegal strength specifier.
 
    *** End of description
 */
