@@ -1,7 +1,7 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
-   This test tests parsing of signal strength of pullup.
+   This test tests combination of 2 signals with default strengths.
 
    *** End of description
 */
@@ -9,11 +9,10 @@ module top (
     input logic clk,
     output logic o
 );
-
-    // Example:
-   pullup (strong1) (o);
+   assign o = 0;
+   assign o = 1;
    always begin
-      if (o)
+      if (o === 1'x)
         $finish;
    end
 endmodule

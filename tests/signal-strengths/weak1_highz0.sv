@@ -1,6 +1,8 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
+   This test tests parsing of strength specifiers
+   when first strength refers to value 1. It should be supported (10.3.4)
 
    *** End of description
 */

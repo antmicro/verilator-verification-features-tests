@@ -1,7 +1,7 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
-   This test tests parsing of signal strength of pullup.
+   This test tests if stronger signal overwrites the weaker.
 
    *** End of description
 */
@@ -11,9 +11,11 @@ module top (
 );
 
     // Example:
-   pullup (strong1) (o);
+   assign (weak0, weak1) o = 1;
+   assign (strong0, strong1) o = 0;
+
    always begin
-      if (o)
+      if (!o)
         $finish;
    end
 endmodule
