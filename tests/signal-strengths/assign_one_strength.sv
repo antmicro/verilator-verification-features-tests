@@ -1,8 +1,8 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
-   This test tests if Verilator throws error
-   on forbidden strength specifier (28.11).
+   This test tests if Verilator throws error on assignment with only one strength specifier.
+   It is illegal according to 10.3.4.
 
    *** End of description
 */
@@ -12,10 +12,6 @@ module top (
 );
 
     // Example:
-	assign (highz0, highz1) o = clk;
+	assign (strong1) o = 1;
     // Example end
-   always begin
-      if (o)
-        $finish;
-   end
 endmodule
