@@ -8,8 +8,8 @@
    *** End of description
 */
 module top (
-    input logic clk,
-    output logic o
+    input wire clk,
+    output wire o
 );
 
     // Example:
