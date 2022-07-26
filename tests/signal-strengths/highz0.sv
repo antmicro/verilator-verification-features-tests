@@ -11,7 +11,7 @@ module top (
 );
 
    // Example:
-   assign (highz0, weak1) o = clk;
+   assign (highz0, weak1) o = 1;
    // Example end
 
    always begin
