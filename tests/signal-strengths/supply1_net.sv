@@ -1,7 +1,7 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
-   This test tests if 0 is replaced by z when strength is highz0.
+   This test tests parsing of supply1 net.
 
    *** End of description
 */
@@ -10,12 +10,12 @@ module top (
     output wire o
 );
 
-   // Example:
-   assign (highz0, weak1) o = 1;
-   // Example end
-
+    // Example:
+        supply1 supply1_net;
+    // Example end
+   assign o = supply1_net;
    always begin
-      if (o === 1'z)
+      if (o)
         $finish;
    end
 endmodule
