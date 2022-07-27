@@ -16,6 +16,8 @@ endclass
 
 
 module top (
+    input clk,
     interface intf
 );
+    initial $finish;
 endmodule

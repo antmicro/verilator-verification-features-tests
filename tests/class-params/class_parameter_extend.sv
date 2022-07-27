@@ -14,11 +14,13 @@ endclass;
 // Example end
 
 module top (
+    input clk,
     output logic [7:0] o
 );
     Holder obj;
     initial begin
         obj = new;
+        $finish;
     end
 
 endmodule

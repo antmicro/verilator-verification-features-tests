@@ -11,6 +11,7 @@ endclass
 
 
 module top (
+    input clk,
     output logic o
 );
     // Example
@@ -18,6 +19,7 @@ module top (
     initial begin
       obj = new;
       o = Hold#()::a;
+      $finish;
     end
     // Example end
 

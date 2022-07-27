@@ -12,11 +12,13 @@ endclass
 
 
 module top (
+    input clk,
     output logic [7:0] o
 );
     Hold #(logic) obj;
     initial begin
         obj = new;
+        $finish;
     end
 
 endmodule
