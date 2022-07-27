@@ -5,10 +5,10 @@
 	path = verilator/randomize-constraints
 	url = ../verilator-1
 	branch = randomize-constraints
-[submodule "verilator/wildcard-associative"]
-	path = verilator/wildcard-associative
+[submodule "verilator/class-params"]
+	path = verilator/class-params
 	url = ../verilator-1
-	branch = wildcard-associative
+	branch = class-params
 [submodule "verilator/signal-strengths"]
 	path = verilator/signal-strengths
 	url = ../verilator-1
