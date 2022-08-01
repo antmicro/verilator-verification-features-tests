@@ -30,5 +30,7 @@ module sub (
    always begin
       if (a === 1'z)
         o = 1;
+      else
+        o = 0;
    end
 endmodule
