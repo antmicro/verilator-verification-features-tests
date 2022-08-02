@@ -37,7 +37,6 @@ jobs:
       CCACHE_DIR: ${{ github.workspace }}/.ccache
       CCACHE_LIMIT_MULTIPLE: 0.95
       CCACHE_MAXSIZE: 150M
-      ROBOT_TOP_SUITE: Verification Features
 
     steps:
     - name: Install dependencies
@@ -76,14 +75,18 @@ jobs:
 
     - name: Run tests
       run: |
-        robot --report NONE --log NONE --output ${{ matrix.VERILATOR_BRANCH }}.xml \
-              --name "${{ env.ROBOT_TOP_SUITE }}" *.robot || \
-        [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
+        for TEST_SUITE_FILE in $(ls *.robot); do
+            TEST_SUITE="${TEST_SUITE_FILE%.*}"
+            robot --report NONE --log NONE \
+                  --output $TEST_SUITE.xml \
+                  $TEST_SUITE_FILE || \
+            [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
+        done
 
     - name: Upload test output
       uses: actions/upload-artifact@v3
       with:
-        path: ${{ matrix.VERILATOR_BRANCH }}.xml
+        path: "*.xml"
         name: output-${{ matrix.VERILATOR_BRANCH }}
 
   automerge:
@@ -120,7 +123,7 @@ jobs:
 
     - name: Create report
       run: |
-        rebot --merge --report index.html output-*/*.xml || \
+        rebot --name "Verification Features" --report index.html output-*/*.xml || \
         [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
 
     - name: Upload artifacts
