@@ -36,7 +36,7 @@ for suite in test_suites:
         test = os.path.basename(test)
         test = os.path.splitext(test)[0]
         os.makedirs('out/' + suite + '/' + test, exist_ok=True)
-        test_cases.append(template.render(verilator_root='verilator/' + branch, test_suite=suite, test=test, tags=branch))
+        test_cases.append(template.render(verilator_root='verilator/' + branch, test_suite=suite, test=test, tags="Branch: " + branch))
 
     with open(suite + '.robot', 'w') as t:
         t.write(suite_tmpl.render(test_cases='\n'.join(test_cases)))
