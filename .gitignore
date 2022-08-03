@@ -1,6 +1,6 @@
 *.xml
 *.html
-*.robot
+/*.robot
 
 out
 
