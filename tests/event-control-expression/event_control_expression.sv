@@ -1,6 +1,6 @@
 /* *** Issue description
 
-   Verilator does not support conditional expressions in event control
+   Verilator does not support arbitrary expressions in event control
    statements. Such expressions get rejected by Verilator's parser. Also, event
    event control statements in any location other than at the top of an
    :code:`always` process are unsupported, subject to change in Verilator 5.
