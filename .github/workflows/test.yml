@@ -70,7 +70,6 @@ jobs:
         autoconf
         ./configure
         make -j$(nproc)
-        sudo make install
 
     - name: Generate Robot test files
       run: ./gen-tests ${{ matrix.VERILATOR_BRANCH }}
