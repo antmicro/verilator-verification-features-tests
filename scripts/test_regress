@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+REPO_DIR=$(dirname $( cd $(dirname $0) && pwd ))
+
+export VERILATOR_ROOT=$1
+shift
+
+OUT_DIR=$REPO_DIR/out/regression/${VERILATOR_ROOT}/
+mkdir -p $OUT_DIR
+
+make -C $VERILATOR_ROOT/test_regress SCENARIOS=$@ -j$(nproc)

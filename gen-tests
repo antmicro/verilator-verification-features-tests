@@ -11,6 +11,9 @@ with open('templates/suite.robot', 'r') as t:
 with open('templates/default.robot', 'r') as t:
     default_tmpl = Template(t.read())
 
+with open('templates/regression.robot', 'r') as t:
+    regress_tmpl = Template(t.read())
+
 branch_filter = sys.argv[1:]
 branches = os.listdir('verilator')
 test_suites = os.listdir('tests')
@@ -40,3 +43,10 @@ for suite in test_suites:
 
     with open(suite + '.robot', 'w') as t:
         t.write(suite_tmpl.render(test_cases='\n'.join(test_cases)))
+
+with open('regression.robot', 'w') as t:
+    test_cases = []
+    for branch in branches:
+        if branch in branch_filter:
+            test_cases.append(regress_tmpl.render(verilator_root='verilator/' + branch, tags="Branch: " + branch))
+    t.write(suite_tmpl.render(test_cases='\n'.join(test_cases)))
