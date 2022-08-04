@@ -53,7 +53,8 @@ for branch in branches:
     if branch == 'master' or skip_branch(branch):
         continue
     print(f'Generating regression tests for branch \'{branch}\'')
-    test_cases.append(regress_tmpl.render(verilator_root='verilator/' + branch, tags="Branch: " + branch))
+    os.makedirs(f'out/regression/verilator/{branch}', exist_ok=True)
+    test_cases.append(regress_tmpl.render(verilator_root=f'verilator/{branch}', tags=f'Branch: {branch}'))
 if len(test_cases) > 0:
     with open('regression.robot', 'w') as t:
         t.write(suite_tmpl.render(test_cases='\n'.join(test_cases)))
