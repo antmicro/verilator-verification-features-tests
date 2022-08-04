@@ -5,18 +5,20 @@ from glob import glob
 import sys
 import os
 
-with open('templates/suite.robot', 'r') as t:
+repo_dir = os.path.dirname(sys.argv[0])
+tmpl_dir = repo_dir + '/templates'
+test_dir = repo_dir + '/tests'
+
+with open(tmpl_dir + '/suite.robot', 'r') as t:
     suite_tmpl = Template(t.read())
 
-with open('templates/default.robot', 'r') as t:
+with open(tmpl_dir + '/default.robot', 'r') as t:
     default_tmpl = Template(t.read())
 
 branch_filter = sys.argv[1:]
-branches = os.listdir('verilator')
-test_suites = os.listdir('tests')
+branches = os.listdir(repo_dir + '/verilator')
+test_suites = os.listdir(test_dir)
 suite_to_branch = { suite: suite if suite in branches else 'master' for suite in test_suites }
-
-os.makedirs('robot_tests', exist_ok=True)
 
 print('Generating:    (suite -> branch)')
 for suite in test_suites:
@@ -27,12 +29,12 @@ for suite in test_suites:
 
     test_cases = []
     template = default_tmpl
-    tmpl_path = 'templates/' + suite + '.robot'
+    tmpl_path = tmpl_dir + '/' + suite + '.robot'
     if os.path.exists(tmpl_path):
         with open(tmpl_path, 'r') as t:
             template = Template(t.read())
 
-    for test in sorted(glob('tests/' + suite + '/*')):
+    for test in sorted(glob(test_dir + '/' + suite + '/*')):
         test = os.path.basename(test)
         test = os.path.splitext(test)[0]
         os.makedirs('out/' + suite + '/' + test, exist_ok=True)

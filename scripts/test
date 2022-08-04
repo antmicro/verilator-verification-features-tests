@@ -8,6 +8,9 @@ TEST_SUITE=$1
 shift
 TEST=$1
 shift
+export VERILATOR_ROOT=$REPO_DIR/$1
+shift
+export PATH="$VERILATOR_ROOT/bin:$PATH"
 
 TEST_FILE=$REPO_DIR/tests/$TEST_SUITE/$TEST.sv
 
