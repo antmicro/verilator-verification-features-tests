@@ -1,7 +1,7 @@
 /* *** Issue description
 
    Verilator does not support signal strength specifiers.
-   This test tests assignment with condition, in which one of values is 'z
+   This test tests assignment of value 1'bz
 
    *** End of description
 */
@@ -12,7 +12,7 @@ module top (
 
    // Example:
 
-   assign (weak0, weak1) o = clk === 1'1 ? 'b0 : 1'bz;
+   assign (weak0, weak1) o = 1'bz;
    // Example end
 
    always begin
