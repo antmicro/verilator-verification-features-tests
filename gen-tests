@@ -1,44 +1,103 @@
 #!/usr/bin/env python3
 
 from jinja2 import Template
-from glob import glob
-import sys
 import os
+import sys
+import yaml
 
 repo_dir = os.path.dirname(sys.argv[0])
-tmpl_dir = repo_dir + '/templates'
-test_dir = repo_dir + '/tests'
+tmpl_dir = f'{repo_dir}/templates'
+test_dir = f'{repo_dir}/tests'
 
-with open(tmpl_dir + '/suite.robot', 'r') as t:
+with open(f'{tmpl_dir}/suite.robot', 'r') as t:
     suite_tmpl = Template(t.read())
 
-with open(tmpl_dir + '/default.robot', 'r') as t:
+with open(f'{tmpl_dir}/default.robot', 'r') as t:
     default_tmpl = Template(t.read())
 
 branch_filter = sys.argv[1:]
-branches = os.listdir(repo_dir + '/verilator')
-test_suites = os.listdir(test_dir)
-suite_to_branch = { suite: suite if suite in branches else 'master' for suite in test_suites }
 
-print('Generating:    (suite -> branch)')
-for suite in test_suites:
-    branch = suite_to_branch[suite]
-    if len(branch_filter) > 0 and branch not in branch_filter:
-        continue
-    print('   ', suite, '->', branch)
 
-    test_cases = []
-    template = default_tmpl
-    tmpl_path = tmpl_dir + '/' + suite + '.robot'
-    if os.path.exists(tmpl_path):
-        with open(tmpl_path, 'r') as t:
-            template = Template(t.read())
+def skip(branch):
+    return len(branch_filter) > 0 and branch not in branch_filter
 
-    for test in sorted(glob(test_dir + '/' + suite + '/*')):
-        test = os.path.basename(test)
-        test = os.path.splitext(test)[0]
-        os.makedirs('out/' + suite + '/' + test, exist_ok=True)
-        test_cases.append(template.render(verilator_root='verilator/' + branch, test_suite=suite, test=test, tags="Branch: " + branch))
 
-    with open(suite + '.robot', 'w') as t:
-        t.write(suite_tmpl.render(test_cases='\n'.join(test_cases)))
+def new_section():
+    print('==============================================================================')
+
+
+class Test:
+    def __init__(self, suite, name, tmpl, branch):
+        self.suite = suite
+        self.name = name
+        self.tmpl = tmpl
+        self.root = f'{repo_dir}/verilator/{branch}'
+        self.tags = [f"Branch: '{branch}'"]
+
+    def render(self):
+        return self.tmpl.render(verilator_root=self.root, suite=self.suite, test=self.name, tags='    '.join(self.tags))
+
+    def makedirs(self):
+        os.makedirs(f'out/{self.suite}/{self.name}', exist_ok=True)
+
+
+default_branch = None
+suite_to_branch = {}
+with open('branches.yml', 'r') as f:
+    for branch, suites in yaml.safe_load(f).items():
+        for suite in suites:
+            if suite == 'default':
+                assert default_branch == None, 'Multiple default branches'
+                default_branch = branch
+            else:
+                suite_to_branch[suite] = branch
+
+
+suites = {}
+for suite_name in os.listdir(test_dir):
+    suite_dir = f'{test_dir}/{suite_name}'
+    for test_name in os.listdir(suite_dir):
+        # Get branch for this test
+        try:
+            branch = suite_to_branch[suite_name]
+        except KeyError:
+            branch = default_branch
+        if skip(branch): continue
+        # Load suite template or use default
+        template = default_tmpl
+        tmpl_path = f'{tmpl_dir}/{suite}.robot'
+        if os.path.exists(tmpl_path):
+            with open(tmpl_path, 'r') as t:
+                template = Template(t.read())
+        # Lazily create suite dict
+        if suite_name not in suites:
+            suite = suites[suite_name] = {}
+        # Finally, create test
+        print(f"Adding test '{suite_name}/{test_name}' (branch: '{branch}')")
+        suite[test_name] = Test(suite_name, test_name, template, branch)
+
+
+new_section()
+with open('tags.yml', 'r') as f:
+    for tag, suite_to_test in yaml.safe_load(f).items():
+        for suite_name, test_names in suite_to_test.items():
+            try:
+                suite = suites[suite_name]
+                print(f"Tagging with '{tag}' in suite '{suite_name}': {', '.join(test_names)}")
+                for test_name in test_names:
+                    test = suite[test_name]
+                    test.tags.append(tag)
+            except KeyError: pass
+
+
+
+new_section()
+print('Generating suites:')
+for suite_name, suite in suites.items():
+    print(f' - {suite_name}')
+    tests = []
+    for test in suite.values():
+        tests.append(test.render())
+        test.makedirs()
+    with open(f'{suite_name}.robot', 'w') as t:
+        t.write(suite_tmpl.render(test_cases='\n'.join(tests)))

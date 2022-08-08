@@ -15,20 +15,18 @@ and more.
 
 ## Usage
 
-To run these tests, you need Robot Framework and Jinja2 installed on your
-system. `gen-tests` is a script that generates Robot test files for each test in
-the `tests` directory. To generate and run all tests:
+To run these tests, you need Robot Framework, PyYAML and Jinja2 installed on
+your system. `gen-tests` is a script that generates Robot test files for each
+test in the `tests` directory. To generate and run all tests:
 
 ```
 ./gen-tests
 robot *.robot
 ```
 
-All tests are divided into several test suites. If a test suite has the same
-name as one of the submodules in the `verilator` directory (these are named
-after Verilator branches), `gen-tests` can generate tests only from that
-specific suite. To generate tests for a specific branch of Verilator (e.g.
-`randomize-constraints`):
+All tests are divided into several test suites. The file `branches.yml` defines
+which suite is tested with which branch of Verilator. To generate tests for a
+specific branch of Verilator (e.g. `randomize-constraints`):
 
 ```
 ./gen-tests randomize-constraints
@@ -44,3 +42,5 @@ Robot tests are generated from Jinja2 templates in the `templates` directory.
 While generating tests for a given test suite, a template with the same name as
 the test suite is used. If no such template exists, the `default` template is
 used.
+
+The file `tags.yml` allows adding custom tags to specific tests.
