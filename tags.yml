@@ -1,0 +1,73 @@
+"Critical tests":
+  asserts:
+    - assert_changed.sv
+    - assert_fell.sv
+    - assert_named.sv
+    - assert_not.sv
+    - assert_past.sv
+    - assert_rose.sv
+    - assert_stable.sv
+  class-params:
+    - class_parameter_extend.sv
+    - class_parameter_scope.sv
+    - class_parameter.sv
+    - class_parameter_type.sv
+    - class_virtual_interface_name.sv
+    - class_virtual_interface.sv
+  event-control-expression:
+    - event_control_expression.sv
+  functional-coverage:
+    - cover_bins_array_auto.sv
+    - cover_bins_default.sv
+    - cover_binsof.sv         
+    - cover_bins_range.sv
+    - cover_clock.sv
+    - cover_iff.sv        
+    - cover_intersect.sv
+    - cover.sv
+    - cover_bins_array.sv     
+    - cover_bins_list.sv   
+    - cover_bins_range_auto.sv
+    - cover_bins.sv      
+    - cover_cross.sv
+    - cover_ignore_bins.sv
+    - cover_options.sv
+  randomize:
+    - randomize.sv
+    - randomize_with.sv
+  randomize-constraints:
+    - constraint_dist.sv
+    - constraint_foreach_inside.sv
+    - constraint_if.sv  
+    - constraint_range.sv    
+    - constraint_set.sv 
+    - constraint_solve.sv
+    - constraint_enum.sv
+    - constraint_foreach.sv       
+    - constraint_impl.sv
+    - constraint_reduction.sv
+    - constraint_soft.sv
+  random-variables:
+    - post_randomize.sv
+    - pre_randomize.sv
+    - randcase.sv
+    - rand_mode.sv
+    - randsequence.sv
+  sequences:
+    - sequence_cycle_delay.sv
+    - sequence_delay_indefinite.sv
+    - sequence_delay_ranges.sv
+    - sequence_delay_repetition.sv
+    - sequence_named.sv
+    - sequence_variable.sv
+  signal-strengths:
+    - assign_weak.sv
+  test-plusargs-variable:
+    - testplusargs_string_concat.sv
+  types:
+    - types_dynamic_array.sv
+    - types_packed_array_net.sv
+    - types_struct.sv
+    - types_unpacked_array.sv
+    - types_unpacked_net.sv
+    - types_wildcard.sv
