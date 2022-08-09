@@ -5,7 +5,7 @@
    *** End of description
 */
 // Example
-class Hold5 #(type T = int);
+class Hold #(type T = int);
   local T [4:0] data;
 endclass
 // Example end
