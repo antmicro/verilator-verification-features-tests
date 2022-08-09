@@ -12,8 +12,6 @@
     - class_parameter_scope.sv
     - class_parameter.sv
     - class_parameter_type.sv
-    - class_virtual_interface_name.sv
-    - class_virtual_interface.sv
   event-control-expression:
     - event_control_expression.sv
   functional-coverage:
@@ -77,3 +75,6 @@
     - types_unpacked_array.sv
     - types_unpacked_net.sv
     - types_wildcard.sv
+  virtual-interfaces:
+    - class_virtual_interface_name.sv
+    - class_virtual_interface.sv
