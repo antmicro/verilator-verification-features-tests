@@ -62,6 +62,12 @@
     - sequence_variable.sv
   signal-strengths:
     - assign_weak.sv
+    - assign_1bit_z.sv
+    - assign_cond_with_z_value.sv
+    - assign_weak0_assign_strong1_net_array.sv
+    - assigns_in_parameterized_interface.sv
+    - assigns_cond_in_parameterized_interface_on_port_list.sv
+    - assigns_in_parameterized_interface_with_cond.sv
   test-plusargs-variable:
     - testplusargs_string_concat.sv
   types:
