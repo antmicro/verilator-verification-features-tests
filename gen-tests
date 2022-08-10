@@ -65,7 +65,7 @@ for suite_name in os.listdir(test_dir):
         if skip(branch): continue
         # Load suite template or use default
         template = default_tmpl
-        tmpl_path = f'{tmpl_dir}/{suite}.robot'
+        tmpl_path = f'{tmpl_dir}/{suite_name}.robot'
         if os.path.exists(tmpl_path):
             with open(tmpl_path, 'r') as t:
                 template = Template(t.read())
