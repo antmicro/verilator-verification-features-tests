@@ -66,6 +66,7 @@
     - assigns_in_parameterized_interface.sv
     - assigns_cond_in_parameterized_interface_on_port_list.sv
     - assigns_in_parameterized_interface_with_cond.sv
+    - strong1_input_port.sv
   test-plusargs-variable:
     - testplusargs_string_concat.sv
   types:

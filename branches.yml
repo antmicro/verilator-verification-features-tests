@@ -8,3 +8,4 @@ randomize-constraints:
   - randomize-constraints
 signal-strengths:
   - signal-strengths
+  - signal-strengths-should-fail
