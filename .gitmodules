@@ -17,3 +17,7 @@
 	path = verilator/event-control-expression
 	url = ../verilator-1
 	branch = event-control-expression
+[submodule "verilator/virtual-interfaces"]
+	path = verilator/virtual-interfaces
+	url = ../verilator-1
+	branch = virtual-interfaces

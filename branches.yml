@@ -9,3 +9,5 @@ randomize-constraints:
 signal-strengths:
   - signal-strengths
   - signal-strengths-should-fail
+virtual-interfaces:
+  - virtual-interfaces
