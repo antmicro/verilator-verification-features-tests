@@ -73,7 +73,8 @@ for suite_name in os.listdir(test_dir):
         if suite_name not in suites:
             suite = suites[suite_name] = {}
         # Finally, create test
-        print(f"Adding test '{suite_name}/{test_name}' (branch: '{branch}')")
+        print(f"Adding test '{suite_name}/{test_name}' (branch: '{branch}'",
+            f", template: '{tmpl_path}'" if template != default_tmpl else "", ")", sep="")
         suite[test_name] = Test(suite_name, test_name, template, branch)
 
 

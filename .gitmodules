@@ -13,11 +13,11 @@
 	path = verilator/signal-strengths
 	url = ../verilator-1
 	branch = signal-strengths
-[submodule "verilator/event-control-expression"]
-	path = verilator/event-control-expression
-	url = ../verilator-1
-	branch = event-control-expression
 [submodule "verilator/virtual-interfaces"]
 	path = verilator/virtual-interfaces
 	url = ../verilator-1
 	branch = virtual-interfaces
+[submodule "verilator/develop-v5"]
+	path = verilator/develop-v5
+	url = ../../verilator/verilator
+	branch = develop-v5

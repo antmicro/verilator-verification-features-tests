@@ -46,6 +46,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
+        sudo apt-get -y install gcc-11 g++-11
         sudo apt-get -y install bison flex libfl-dev
         sudo apt-get -y install ccache
         sudo apt-get -y install python3-pip python3-setuptools
@@ -68,6 +69,9 @@ jobs:
 
     - name: Build Verilator
       working-directory: verilator/${{ matrix.VERILATOR_BRANCH }}
+      env:
+        CC: gcc-11
+        CXX: g++-11
       run: |
         git show -q
         autoconf
