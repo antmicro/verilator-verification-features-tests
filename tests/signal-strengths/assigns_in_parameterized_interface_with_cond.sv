@@ -5,11 +5,11 @@
 
    *** End of description
 */
-interface inter (output wire a);
+interface inter (input logic cond, output wire a);
    parameter W;
    // Example:
    wire (weak0, weak1) [W-1:0] b = '1;
-   assign (strong0, strong1) b = 1 ? 'b0 : 'bz;
+   assign (strong0, strong1) b = cond ? 'b0 : 'bz;
 
    assign a = b[10];
 
@@ -19,7 +19,7 @@ module top (
     input wire clk,
     output wire o
 );
-   inter #(.W(32)) i(.a(o));
+   inter #(.W(32)) i(.cond(1'b1), .a(o));
    
    always begin
       if (!o)
