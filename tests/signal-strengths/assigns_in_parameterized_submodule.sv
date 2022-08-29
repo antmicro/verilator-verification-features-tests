@@ -9,7 +9,7 @@ module sub (output wire a);
    parameter W;
    // Example:
    wire (weak0, weak1) [W-1:0] b = 0;
-   assign (strong0, strong1) b = 1;
+   assign (strong0, strong1) b = '1;
 
    assign a = b[50];
 

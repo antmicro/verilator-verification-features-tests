@@ -11,7 +11,7 @@ module top (
 );
 
     // Example:
-   assign (weak0, weak1) o = 1;
+   assign (weak0, weak1) o = '1;
    assign (strong0, strong1) o = 0;
 
    always begin

@@ -5,11 +5,11 @@
 
    *** End of description
 */
-interface inter (output wire a);
+interface inter (input logic cond, output wire a);
    parameter W = 15;
    // Example:
    wire (weak0, weak1) [W-1:0] b = 0;
-   assign (strong0, strong1) b = 1 ? '1 : 'z;
+   assign (strong0, strong1) b = cond ? '1 : 'z;
 
    assign a = b[W - 5];
 
@@ -24,7 +24,7 @@ module top (
     output wire o
 );
    wire         c;
-   inter i(.a(c));
+   inter i(.cond(1'b1), .a(c));
    sub u_sub (i, .b(o));
    
    always begin
