@@ -1,7 +1,5 @@
 master:
   - default
-class-params:
-  - class-params
 develop-v5:
   - event-control-expression
 randomize-constraints:
