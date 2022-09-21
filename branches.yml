@@ -1,6 +1,7 @@
 master:
   - default
 develop-v5:
+  - assert
   - event-control-expression
 randomize-constraints:
   - randomize-constraints
