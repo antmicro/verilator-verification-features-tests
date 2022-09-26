@@ -14,7 +14,8 @@ module top(input logic clk);
         $display("t=%0t   cyc=%0d   val=%b", $time, cyc, val);
         if (cyc > 10) $finish;
     end
-    assert property(@(posedge clk) $changed(val))
+    // skip first cycle
+    assert property(@(posedge clk) cyc == 0 || $changed(val))
         else begin
             $display("$changed assert failed");
             $stop;
