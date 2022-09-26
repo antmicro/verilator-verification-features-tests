@@ -5,10 +5,6 @@
 	path = verilator/randomize-constraints
 	url = ../verilator-1
 	branch = randomize-constraints
-[submodule "verilator/signal-strengths"]
-	path = verilator/signal-strengths
-	url = ../verilator-1
-	branch = signal-strengths
 [submodule "verilator/virtual-interfaces"]
 	path = verilator/virtual-interfaces
 	url = ../verilator-1
