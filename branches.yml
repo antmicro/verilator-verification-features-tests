@@ -5,8 +5,5 @@ develop-v5:
   - event-control-expression
 randomize-constraints:
   - randomize-constraints
-signal-strengths:
-  - signal-strengths
-  - signal-strengths-should-fail
 virtual-interfaces:
   - virtual-interfaces
