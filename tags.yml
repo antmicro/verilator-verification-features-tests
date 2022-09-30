@@ -77,5 +77,6 @@
     - types_unpacked_net.sv
     - types_wildcard.sv
   virtual-interfaces:
-    - class_virtual_interface_name.sv
     - class_virtual_interface.sv
+    - generic_interface.sv
+    - virtual_interface.sv

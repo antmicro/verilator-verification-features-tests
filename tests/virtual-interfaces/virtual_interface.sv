@@ -8,16 +8,10 @@
 interface intf;
 endinterface
 
-  // Example
-class Hold ;
-  virtual interface intf signals;
-endclass
-  // Example end
-
-
 module top (
     input clk
 );
-    Hold h;
+    virtual interface intf signals;
+    virtual intf signals2;
     initial $finish;
 endmodule
