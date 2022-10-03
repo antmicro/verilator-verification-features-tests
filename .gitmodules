@@ -9,7 +9,3 @@
 	path = verilator/virtual-interfaces
 	url = ../verilator-1
 	branch = virtual-interfaces
-[submodule "verilator/develop-v5"]
-	path = verilator/develop-v5
-	url = ../../verilator/verilator
-	branch = develop-v5
