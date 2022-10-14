@@ -80,3 +80,5 @@
     - class_virtual_interface.sv
     - generic_interface.sv
     - virtual_interface.sv
+  class:
+    - class_this.sv
