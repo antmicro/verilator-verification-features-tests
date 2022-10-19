@@ -19,5 +19,6 @@ module top (
     input clk
 );
     Hold h;
+    intf i;
     initial $finish;
 endmodule
