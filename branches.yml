@@ -2,5 +2,3 @@ master:
   - default
 randomize-constraints:
   - randomize-constraints
-virtual-interfaces:
-  - virtual-interfaces

@@ -5,7 +5,3 @@
 	path = verilator/randomize-constraints
 	url = ../verilator-1
 	branch = randomize-constraints
-[submodule "verilator/virtual-interfaces"]
-	path = verilator/virtual-interfaces
-	url = ../verilator-1
-	branch = virtual-interfaces
