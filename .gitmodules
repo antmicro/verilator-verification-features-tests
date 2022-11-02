@@ -4,4 +4,4 @@
 [submodule "verilator/randomize-constraints"]
 	path = verilator/randomize-constraints
 	url = ../verilator-1
-	branch = randomize-constraints
+	branch = randomize-constraints-crave
