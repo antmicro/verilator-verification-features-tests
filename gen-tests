@@ -18,8 +18,11 @@ with open(f'{tmpl_dir}/default.robot', 'r') as t:
 branch_filter = sys.argv[1:]
 
 
-def skip(branch):
+def skip_branch(branch):
     return len(branch_filter) > 0 and branch not in branch_filter
+
+def skip_suite(suite):
+    return suite in ["unsupported-signal-strengths", "functional-coverage"]
 
 
 def new_section():
@@ -55,6 +58,7 @@ with open('branches.yml', 'r') as f:
 
 suites = {}
 for suite_name in os.listdir(test_dir):
+    if skip_suite(suite_name): continue
     suite_dir = f'{test_dir}/{suite_name}'
     for test_name in os.listdir(suite_dir):
         # Get branch for this test
@@ -62,7 +66,7 @@ for suite_name in os.listdir(test_dir):
             branch = suite_to_branch[suite_name]
         except KeyError:
             branch = default_branch
-        if skip(branch): continue
+        if skip_branch(branch): continue
         # Load suite template or use default
         template = default_tmpl
         tmpl_path = f'{tmpl_dir}/{suite_name}.robot'
