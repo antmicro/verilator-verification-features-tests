@@ -51,6 +51,11 @@
     - randcase.sv
     - rand_mode.sv
     - randsequence.sv
+  rand-types:
+    - types_dynamic_array.sv
+    - types_packed_array_net.sv
+    - types_unpacked_array.sv
+    - types_unpacked_net.sv
   sequences:
     - sequence_cycle_delay.sv
     - sequence_delay_indefinite.sv
@@ -69,12 +74,8 @@
     - strong1_input_port.sv
   test-plusargs-variable:
     - testplusargs_string_concat.sv
-  types:
-    - types_dynamic_array.sv
-    - types_packed_array_net.sv
+  unpacked-structs:
     - types_struct.sv
-    - types_unpacked_array.sv
-    - types_unpacked_net.sv
   virtual-interfaces:
     - class_virtual_interface.sv
     - generic_interface.sv
