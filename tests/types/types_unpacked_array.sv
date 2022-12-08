@@ -19,6 +19,6 @@ module top (input logic clk);
        for (int i = 0; i < 4; i++) begin
          $display("a[%d] = %0b", i, obj.a[i]);
        end
+       $finish;
     end
-    $finish;
 endmodule

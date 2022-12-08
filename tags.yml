@@ -75,10 +75,11 @@
     - types_struct.sv
     - types_unpacked_array.sv
     - types_unpacked_net.sv
-    - types_wildcard.sv
   virtual-interfaces:
     - class_virtual_interface.sv
     - generic_interface.sv
     - virtual_interface.sv
+  wildcard-associative:
+    - types_wildcard.sv
   class:
     - class_this.sv
