@@ -2,3 +2,5 @@ master:
   - default
 randomize-constraints:
   - randomize-constraints
+unpacked-structs:
+  - unpacked-structs
