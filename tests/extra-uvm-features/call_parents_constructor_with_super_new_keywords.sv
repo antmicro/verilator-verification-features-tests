@@ -59,6 +59,7 @@ class Bar2Args extends Foo2Args;
 endclass
 
 module t (/*AUTOARG*/
+      clk
    );
 
    class FooInModule;
