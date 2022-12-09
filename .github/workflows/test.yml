@@ -60,9 +60,6 @@ jobs:
         sudo pip3 install pyyaml
         sudo pip3 install jinja2
         sudo pip3 install robotframework
-        # install custom theme
-        which rebot
-        sudo cp -r theme/rebot/ /usr/local/lib/python3.10/dist-packages/robot/htmldata/
 
     - name: Cache $CCACHE_DIR
       uses: actions/cache@v2
@@ -120,15 +117,23 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        ref: gh-pages
+        submodules: recursive
         fetch-depth: 0
         clean: false
-
     - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get -y install python3-pip python3-setuptools
         sudo pip3 install robotframework
+        # install custom theme
+        sudo cp -r theme/rebot/ /usr/local/lib/python3.10/dist-packages/robot/htmldata/
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        fetch-depth: 0
+        clean: false
 
     - name: Download test output
       uses: actions/download-artifact@v2
