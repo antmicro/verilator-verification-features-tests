@@ -155,7 +155,7 @@ jobs:
       if: github.ref == 'refs/heads/main'
       run: |
         touch .nojekyll
-        mv report.html index.html
+        cp report.html index.html
         git add *.html
         git config --local user.email "push@gha"
         git config --local user.name "GHA"
