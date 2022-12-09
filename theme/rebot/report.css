@@ -16,14 +16,14 @@ body{
 }
 @media only screen and (min-width: 1600px) {
   body {
-    margin-left:400px;
-    margin-right:400px;
+    margin-left:300px;
+    margin-right:300px;
   }
 }
 @media only screen and (min-width: 1920px) {
   body {
-    margin-left:500px;
-    margin-right:500px;
+    margin-left:400px;
+    margin-right:400px;
   }
 }
 
