@@ -62,6 +62,8 @@ module t (/*AUTOARG*/
       clk
    );
 
+   input clk;
+
    class FooInModule;
       int x;
       function new;
