@@ -45,6 +45,14 @@
     - constraint_impl.sv
     - constraint_reduction.sv
     - constraint_soft.sv
+    - constraint_soft_fail.sv
+    - constraint_soft_double.sv
+    - constraint_soft_idle.sv
+    - constraint_soft_keep.sv
+    - constraint_soft_mixed.sv
+    - constraint_soft_multiple_relax.sv
+    - constraint_soft_order.sv
+    - constraint_relax_fail.sv
   random-variables:
     - post_randomize.sv
     - pre_randomize.sv
