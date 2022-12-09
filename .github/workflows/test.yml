@@ -43,6 +43,13 @@ jobs:
       CCACHE_MAXSIZE: 150M
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        fetch-depth: 0
+        clean: false
+
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -53,13 +60,9 @@ jobs:
         sudo pip3 install pyyaml
         sudo pip3 install jinja2
         sudo pip3 install robotframework
-
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        submodules: recursive
-        fetch-depth: 0
-        clean: false
+        # install custom theme
+        which rebot
+        sudo cp -r theme/rebot/ /usr/local/lib/python3.10/dist-packages/robot/htmldata/
 
     - name: Cache $CCACHE_DIR
       uses: actions/cache@v2
