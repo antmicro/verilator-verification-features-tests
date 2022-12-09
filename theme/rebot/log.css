@@ -226,6 +226,12 @@ table {
     position:relative;
     top:2px
 }
+@media only screen and (max-width: 800px) {
+  .tablesorter .tablesorter-header:not(.sorter-false) .tablesorter-header-inner::after{ 
+    display: none;
+  }
+}
+
 .tablesorter .tablesorter-header.tablesorter-headerAsc .tablesorter-header-inner::after{
     content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAARCAMAAADT/c3XAAAAZlBMVEUAAAAAgO+/v88AefPCws4AgOu6xM6/xcu/xsoAfu0Afe2/xcq/xcq/xskAfu3AxcoAfe2/xcoAfu2+xcvAxcsAfe2/xcoAfe3AxcoAfe0Afe4Afe4Afu2/xcq+xcsAfe2/xcr///9r1j7RAAAAH3RSTlMAEBAVFRoavr/BwsbHyMnJysrLzc3S0tnZ3d3w8fLzWVdJsQAAAAFiS0dEIcRsDRYAAABfSURBVAjXhczHEoAgDATQ0OwFVIo1/P9XChkvnNxL3szuBKCIfG75ycXoyFWI2xpDRTKcm+yZyjQaoelpJocaftNpkY9YWtBok4XFCZhGr5RHzSB7P0hU0oh8naL89QL8CgVYq2VhrAAAAABJRU5ErkJggg==")
 }
@@ -537,12 +543,14 @@ input[type=radio]:checked{
     opacity:.7
 }
 
-#children-populated {
-    padding-left: 20px;
-}
-
 .children {
     margin-left: 30px !important;
+}
+
+@media only screen and (max-width: 650px) {
+  .children {
+    margin-left: 0px !important;
+  }
 }
 
 .closed .element-header-toggle{
