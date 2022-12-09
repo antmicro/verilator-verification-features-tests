@@ -212,11 +212,11 @@ table {
     color:#00172b
 }
 .tablesorter .tablesorter-header:first-child{
-    padding-left:40px;
+    padding-left:10px;
     width:auto
 }
 .tablesorter .tablesorter-header:last-child{
-    padding-right:40px;
+    padding-right:10px;
     width:190px
 }
 .tablesorter .tablesorter-header:not(.sorter-false) .tablesorter-header-inner::after{
@@ -256,10 +256,10 @@ table {
     text-align:left;
 }
 .tablesorter tbody td:first-child{
-    padding-left:40px
+    padding-left:10px
 }
 .tablesorter tbody td:last-child{
-    padding-right:40px
+    padding-right:10px
 }
 .graph{
     background:#ff6059;
@@ -477,7 +477,6 @@ input[type=radio]:checked{
     display:flex;
     margin:0;
     min-height:60px;
-    padding:0 40px;
     position:relative
 }
 .element-header:hover{
@@ -501,9 +500,9 @@ input[type=radio]:checked{
 }
 .element-header-left{
     height:100%;
-    margin:0 0 0 16px;
+    margin:0 0 0 10px;
     order:1;
-    padding:20px 0;
+    padding:10px 0;
     width:100%
 }
 .element-header-left .name{
@@ -537,6 +536,15 @@ input[type=radio]:checked{
     background-color:unset;
     opacity:.7
 }
+
+#children-populated {
+    padding-left: 20px;
+}
+
+.children {
+    margin-left: 30px !important;
+}
+
 .closed .element-header-toggle{
     background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAABmJLR0QA/wD/AP+gvaeTAAAAJUlEQVQYlWNgQAa1b/8z1L79jyzExEAAEFTAiG4kySagApo4EgC9CAwZ5UGxSQAAAABJRU5ErkJggg==") center no-repeat
 }
@@ -885,7 +893,7 @@ a:hover{
     background-color: transparent;
 }
 .element-header-left {
-    padding: 3px 80px 3px 20px;
+    padding: 3px 20px 3px 20px;
 }
 .element-header-right {
     position: absolute;
