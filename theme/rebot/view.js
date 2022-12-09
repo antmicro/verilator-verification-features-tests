@@ -79,7 +79,7 @@ function addStatistics() {
         '<th class="stats-col-stat">Skip</th>' +
         '<th class="stats-col-elapsed">Elapsed</th>' +
         '<th class="stats-col-graph">Pass / Fail / Skip</th>' +
-        '<th class="stats-col-stat"">Additional information</th>';
+        '<th class="stats-col-stat"">Info</th>';
     var statTable =
         '<h2>{Test} Statistics</h2>' +
         '<table class="statistics" id="total-stats"><thead><tr>' +
