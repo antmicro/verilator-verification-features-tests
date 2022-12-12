@@ -1,32 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap');
 *{
-    box-sizing:border-box
+    box-sizing:border-box;
+    font-family:sans-serif;
 }
 body{
     background:#f9f9fb !important;
     color:#00172b;
-    font-family:"Work Sans",sans;
+    font-family:"Work Sans",sans-serif;
     font-size:1rem;
     margin:5px;
 }
 @media only screen and (min-width: 1280px) {
   body {
-    margin-left:200px;
-    margin-right:200px;
+    margin-left:100px;
+    margin-right:100px;
   }
 }
 @media only screen and (min-width: 1600px) {
   body {
-    margin-left:400px;
-    margin-right:400px;
+    margin-left:200px;
+    margin-right:200px;
   }
 }
 @media only screen and (min-width: 1920px) {
   body {
-    margin-left:500px;
-    margin-right:500px;
+    margin-left:300px;
+    margin-right:300px;
   }
 }
-
 a,a:visited,a:link{
     color:#2D74EB
 }
@@ -80,7 +81,7 @@ table {
     grid-template-columns:1fr auto;
     height:auto;
     margin:0;
-    padding:24px 40px;
+    padding:24px 5px;
     position:relative;
     width:100%
 }
@@ -178,7 +179,7 @@ table {
 }
 .details td{
     font-weight:bold;
-    padding:0
+    padding: 10px;
 }
 .tablesorter{
     background:none;
@@ -202,7 +203,7 @@ table {
     border:0;
     color:rgba(0,23,43,0.6);
     font-weight:normal;
-    padding:0;
+    padding-right:5px;
     text-align:left;
     transition:.2s;
     vertical-align:middle;
@@ -217,7 +218,7 @@ table {
 }
 .tablesorter .tablesorter-header:last-child{
     padding-right:10px;
-    width:190px
+    width:80px
 }
 .tablesorter .tablesorter-header:not(.sorter-false) .tablesorter-header-inner::after{
     content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAARCAMAAADT/c3XAAAATlBMVEUAAAC/v8/Cws66xM6/xcu/xsrAxcq/xcq/xcq/xcq/xsnAxcq/xcq/xcq+xcvAxcu/xcrAxcq+xcrAxcq/xsu+xsq/xcq+xcu/xcr///+bR2YSAAAAGHRSTlMAEBUavr/BwsbHyMnKy83N0tnd3fDx8vNmTsmqAAAAAWJLR0QZ7G61iAAAAFRJREFUCNeFjkkOgCAQBBtwZ1Rwnf+/VGg1kZN9qmQqlQGK2fOwDwXVQHZR50mjI4kxktnzmKQBdUfN9hV+18rtjg3kLXgwyTgyLyvp+0PifbNl6wJwAQPr9oS4ZgAAAABJRU5ErkJggg==");
@@ -227,11 +228,10 @@ table {
     top:2px
 }
 @media only screen and (max-width: 800px) {
-  .tablesorter .tablesorter-header:not(.sorter-false) .tablesorter-header-inner::after{ 
+  .tablesorter .tablesorter-header:not(.sorter-false) .tablesorter-header-inner::after{
     display: none;
   }
 }
-
 .tablesorter .tablesorter-header.tablesorter-headerAsc .tablesorter-header-inner::after{
     content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAARCAMAAADT/c3XAAAAZlBMVEUAAAAAgO+/v88AefPCws4AgOu6xM6/xcu/xsoAfu0Afe2/xcq/xcq/xskAfu3AxcoAfe2/xcoAfu2+xcvAxcsAfe2/xcoAfe3AxcoAfe0Afe4Afe4Afu2/xcq+xcsAfe2/xcr///9r1j7RAAAAH3RSTlMAEBAVFRoavr/BwsbHyMnJysrLzc3S0tnZ3d3w8fLzWVdJsQAAAAFiS0dEIcRsDRYAAABfSURBVAjXhczHEoAgDATQ0OwFVIo1/P9XChkvnNxL3szuBKCIfG75ycXoyFWI2xpDRTKcm+yZyjQaoelpJocaftNpkY9YWtBok4XFCZhGr5RHzSB7P0hU0oh8naL89QL8CgVYq2VhrAAAAABJRU5ErkJggg==")
 }
@@ -258,14 +258,11 @@ table {
 .tablesorter tbody td{
     border:0;
     font-weight:500;
-    padding-right: 10px;
+    padding-right: 5px;
     text-align:left;
 }
 .tablesorter tbody td:first-child{
-    padding-left:10px
-}
-.tablesorter tbody td:last-child{
-    padding-right:10px
+    padding-left:5px
 }
 .graph{
     background:#ff6059;
@@ -506,18 +503,20 @@ input[type=radio]:checked{
 }
 .element-header-left{
     height:100%;
-    margin:0 0 0 10px;
+    margin:0 0 0 0px;
     order:1;
     padding:10px 0;
     width:100%
 }
 .element-header-left .name{
     height:100%;
-    order:1
+    order:1;
+    line-height: 1.5;
+    word-break: break-all;
 }
 .element-header-left .elapsed{
     font-size:.875em;
-    margin-right:60px;
+    margin-right:5px;
     order:2;
     padding-left:0
 }
@@ -542,17 +541,14 @@ input[type=radio]:checked{
     background-color:unset;
     opacity:.7
 }
-
 .children {
     margin-left: 30px !important;
 }
-
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 750px) {
   .children {
     margin-left: 0px !important;
   }
 }
-
 .closed .element-header-toggle{
     background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAABmJLR0QA/wD/AP+gvaeTAAAAJUlEQVQYlWNgQAa1b/8z1L79jyzExEAAEFTAiG4kySagApo4EgC9CAwZ5UGxSQAAAABJRU5ErkJggg==") center no-repeat
 }
@@ -572,7 +568,7 @@ input[type=radio]:checked{
     font-size:.875em;
     margin-bottom:8px;
     margin-top:8px;
-    padding-right:40px
+    padding-right:5px
 }
 .metadata tr{
     height:30px
@@ -596,7 +592,6 @@ input[type=radio]:checked{
     border-top:1px solid #E5E5EA;
     margin:0;
     padding:8px 0;
-    width:calc(100% - 40px)
 }
 .messages td{
     padding:0
@@ -675,11 +670,9 @@ input[type=radio]:checked{
     height: 10px;
     padding: 0;
 }
-
 #statistics-container {
     width: 100%;
 }
-
 .empty-graph {
     background: #eee;
 }
@@ -812,7 +805,6 @@ a:hover{
     background: white;
 }
 /* Test details table */
-
 .details, .statistics {
     width: 100%;
 }
@@ -838,9 +830,7 @@ a:hover{
 }
 .tablesorter-header {
     background-image: none;
-    background: #D1D1D6 !important;
 }
-
 .doc > * {
     margin: 0.7em 1em 0.1em 1em;
     padding: 0;
@@ -901,7 +891,7 @@ a:hover{
     background-color: transparent;
 }
 .element-header-left {
-    padding: 3px 20px 3px 20px;
+    padding: 10px 0px 10px 0px;
 }
 .element-header-right {
     position: absolute;
@@ -958,7 +948,6 @@ a:hover{
 /* Messages and errors */
 .messages .time, .messages .message {
     font-family: monospace;
-    font-size: 1.1em;
 }
 #errors .message {
     font-family: monospace;
@@ -1029,7 +1018,6 @@ a:hover{
 #total-stats tr:hover, #tag-stats tr:hover {
     cursor: default;
 }
-
 .details, .statistics {
     width: 100%;
 }
@@ -1077,7 +1065,6 @@ a:hover{
 #javascript-disabled b {
     font-style: italic;
 }
-
 #header {
     width: auto;
 }
@@ -1106,9 +1093,7 @@ a:hover{
 }
 .tablesorter-header {
     background-image: none;
-    background: #ddd !important;
 }
-
 #javascript-disabled {
     margin: 100px auto 0 auto;
     padding: 20px;
@@ -1129,7 +1114,6 @@ a:hover{
 #javascript-disabled b {
     font-style: italic;
 }
-
 .doc > * {
     margin: 0.7em 1em 0.1em 1em;
     padding: 0;
