@@ -1,6 +1,6 @@
 /* *** Issue description
 
-   Parameterized classes are not supported.
+   Type aliases of parametrized classes in said classes are not supported.
 
    *** End of description
 */
