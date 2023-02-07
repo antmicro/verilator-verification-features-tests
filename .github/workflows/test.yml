@@ -57,6 +57,7 @@ jobs:
         sudo apt-get -y install bison flex libfl-dev
         sudo apt-get -y install ccache
         sudo apt-get -y install python3-pip python3-setuptools
+        sudo apt-get -y install help2man
         sudo pip3 install pyyaml
         sudo pip3 install jinja2
         sudo pip3 install robotframework
