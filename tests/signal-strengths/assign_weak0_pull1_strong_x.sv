@@ -15,7 +15,7 @@ module top (
     // Example:
    assign (weak0, weak1) o = 0;
    assign (pull0, pull1) o = 1;
-   assign (strong0, strong1) o = 1'x;
+   assign (strong0, strong1) o = 1'bx;
 
    always begin
       if (o !== 1)

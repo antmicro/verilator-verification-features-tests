@@ -16,7 +16,7 @@ module top (
    // Example end
 
    always begin
-      if (o === 1'z)
+      if (o === 1'bz)
         $finish;
    end
 endmodule
