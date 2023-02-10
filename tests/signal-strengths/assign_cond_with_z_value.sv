@@ -12,11 +12,11 @@ module top (
 
    // Example:
 
-   assign (weak0, weak1) o = clk === 1'1 ? 'b0 : 1'bz;
+   assign (weak0, weak1) o = clk === 1'b1 ? 1'b0 : 1'bz;
    // Example end
 
    always begin
-      if (o === 1'z)
+      if (o === 1'bz)
         $finish;
    end
 endmodule
