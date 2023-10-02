@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+REPO_DIR=$(dirname $( cd $(dirname $0) && pwd ))
+
+SUITE=$1
+shift
+TEST=$1
+shift
+export VERILATOR_ROOT=$REPO_DIR/$1
+shift
+export PATH="$VERILATOR_ROOT/bin:$PATH"
+
+TEST_FILE=$REPO_DIR/tests/$SUITE/$TEST
+
+UVM_DIR=$REPO_DIR/uvm/src
+
+OUT_DIR=$REPO_DIR/out/$SUITE/$TEST
+mkdir -p $OUT_DIR
+
+verilator --cc $TEST_FILE $UVM_DIR/uvm.sv -I$UVM_DIR $REPO_DIR/src/main.cpp -Mdir $OUT_DIR --prefix Vtop --exe $@
+make -C $OUT_DIR -f Vtop.mk -j$(nproc)
+$OUT_DIR/Vtop
