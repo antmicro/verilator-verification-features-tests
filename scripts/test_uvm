@@ -19,6 +19,5 @@ UVM_DIR=$REPO_DIR/uvm/src
 OUT_DIR=$REPO_DIR/out/$SUITE/$TEST
 mkdir -p $OUT_DIR
 
-verilator --cc $UVM_DIR/uvm.sv -I$UVM_DIR $TEST_FILE $REPO_DIR/src/main.cpp -Mdir $OUT_DIR --prefix Vtop --exe --timing --DUVM_NO_DPI -Wno-lint -Wno-style $@
-make -C $OUT_DIR -f Vtop.mk -j$(nproc)
+verilator --binary $UVM_DIR/uvm.sv -I$UVM_DIR $TEST_FILE -Mdir $OUT_DIR --timing --DUVM_NO_DPI -Wno-lint -Wno-style -Wno-CONSTRAINTIGN -Wno-ZERODLY -Wno-SYMRSVDWORD --build-jobs `nproc` --prefix Vtop $@
 $OUT_DIR/Vtop
