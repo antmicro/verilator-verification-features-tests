@@ -5,7 +5,3 @@
 	path = verilator/randomize-constraints
 	url = ../verilator-1
 	branch = randomize-constraints-crave
-[submodule "verilator/unpacked-structs"]
-	path = verilator/unpacked-structs
-	url = ../verilator-1
-	branch = kiryk/support-unpacked-structs
