@@ -6,7 +6,7 @@ class C#(parameter type E) extends E;
 
     function new(string name, uvm_component parent = null);
         super.new(name, parent);
-        `uvm_info("RESULT", "Created new uvm_agent", UVM_LOW);
+        `uvm_info("RESULT", "Created new uvm class", UVM_LOW);
     endfunction
 endclass
 
