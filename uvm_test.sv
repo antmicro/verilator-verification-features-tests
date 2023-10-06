@@ -32,7 +32,7 @@ module top;
        end else if ($test$plusargs("uvm_scoreboard")) begin 
           C#(uvm_scoreboard) obj;
           obj = new("C");
-       end else if ($test$plusargs("uvm_sequncer")) begin 
+       end else if ($test$plusargs("uvm_sequencer")) begin 
           C#(uvm_sequencer) obj;
           obj = new("C");
        end else if ($test$plusargs("uvm_test")) begin 
