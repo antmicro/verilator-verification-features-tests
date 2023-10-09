@@ -1,1 +1,0 @@
-import uvm_pkg::*;
