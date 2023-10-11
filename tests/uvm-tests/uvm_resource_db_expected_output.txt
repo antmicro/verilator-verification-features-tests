@@ -1,0 +1,9 @@
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_INFO @ 0: reporter [RNTST] Running test ...
+UVM_INFO /home/rrozak/antmicro/verilator-verification-features-tests/tests/uvm-tests/uvm_test.sv(79) @ 0: ReadByName [RESULT] read_by_name successful

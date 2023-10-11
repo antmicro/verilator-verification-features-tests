@@ -1,0 +1,14 @@
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_INFO /home/rrozak/antmicro/verilator-verification-features-tests/tests/uvm-tests/uvm_test.sv(16) @ 0: reporter [RESULT] new uvm_class created
+UVM_INFO @ 0: reporter [RNTST] Running test ...
+UVM_INFO /home/rrozak/antmicro/verilator-verification-features-tests/tests/uvm-tests/uvm_test.sv(21) @ 0: reporter [RESULT] build phase completed
+UVM_INFO /home/rrozak/antmicro/verilator-verification-features-tests/tests/uvm-tests/uvm_test.sv(26) @ 0: reporter [RESULT] connect phase completed
+UVM_INFO /home/rrozak/antmicro/verilator-verification-features-tests/tests/uvm-tests/uvm_test.sv(31) @ 0: reporter [RESULT] end of elaboration phase completed
+UVM_INFO /home/rrozak/antmicro/verilator-verification-features-tests/tests/uvm-tests/uvm_test.sv(36) @ 0: reporter [RESULT] start of simulation phase completed
+UVM_INFO /home/rrozak/antmicro/verilator-verification-features-tests/tests/uvm-tests/uvm_test.sv(40) @ 0: reporter [RESULT] run phase phase completed
