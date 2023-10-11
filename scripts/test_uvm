@@ -22,5 +22,5 @@ mkdir -p $OUT_DIR
 mkdir -p $REPO_DIR/out/$SUITE/$TEST
 
 verilator --binary $UVM_DIR/uvm.sv -I$UVM_DIR $SUITE_DIR/uvm_test.sv -Mdir $OUT_DIR --timing --DUVM_NO_DPI -Wno-lint -Wno-style -Wno-CONSTRAINTIGN -Wno-ZERODLY -Wno-SYMRSVDWORD --build-jobs `nproc` --prefix Vtop $@
-timeout 100 $OUT_DIR/Vtop +$TEST +UVM_NO_RELNOTES | tee ${TEST}_output.txt
+timeout 100 $OUT_DIR/Vtop +$TEST | tee ${TEST}_output.txt
 diff ${TEST}_output.txt $SUITE_DIR/${TEST}_expected_output.txt
