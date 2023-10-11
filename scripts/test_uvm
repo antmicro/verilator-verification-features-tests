@@ -12,9 +12,9 @@ export VERILATOR_ROOT=$REPO_DIR/$1
 shift
 export PATH="$VERILATOR_ROOT/bin:$PATH"
 
-UVM_DIR=$REPO_DIR/uvm/src
+UVM_DIR=uvm/src
 
-SUITE_DIR=$REPO_DIR/tests/$SUITE
+SUITE_DIR=tests/$SUITE
 
 OUT_DIR=$REPO_DIR/out/$SUITE/uvm
 
