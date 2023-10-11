@@ -12,6 +12,7 @@ export VERILATOR_ROOT=$REPO_DIR/$1
 shift
 export PATH="$VERILATOR_ROOT/bin:$PATH"
 
+# we use relative paths in order to easily compare the output
 UVM_DIR=uvm/src
 
 SUITE_DIR=tests/$SUITE
@@ -21,6 +22,6 @@ OUT_DIR=$REPO_DIR/out/$SUITE/uvm
 mkdir -p $OUT_DIR
 mkdir -p $REPO_DIR/out/$SUITE/$TEST
 
-verilator --binary $UVM_DIR/uvm.sv -I$UVM_DIR $SUITE_DIR/uvm_test.sv -Mdir $OUT_DIR --timing --DUVM_NO_DPI -Wno-lint -Wno-style -Wno-CONSTRAINTIGN -Wno-ZERODLY -Wno-SYMRSVDWORD --build-jobs `nproc` --prefix Vtop $@
+verilator --binary $UVM_DIR/uvm.sv -I$UVM_DIR $SUITE_DIR/uvm_test.sv -Mdir $OUT_DIR --timing -DUVM_NO_DPI -Wno-lint -Wno-style -Wno-CONSTRAINTIGN -Wno-ZERODLY -Wno-SYMRSVDWORD --build-jobs `nproc` --prefix Vtop $@
 timeout 100 $OUT_DIR/Vtop +$TEST | tee ${TEST}_output.txt
-diff ${TEST}_output.txt $SUITE_DIR/${TEST}_expected_output.txt
+diff ${TEST}_output.txt $SUITE_DIR/expected_outputs/${TEST}_expected_output.txt
