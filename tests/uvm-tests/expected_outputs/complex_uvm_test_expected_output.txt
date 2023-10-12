@@ -1,0 +1,30 @@
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
+UVM_INFO uvm//src/base/uvm_root.svh(449) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2017
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2-2017:UVM:1.0
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO tests/uvm-tests/uvm_test.sv(16) @ 0: reporter [RESULT] new uvm_class created
+UVM_INFO @ 0: reporter [RNTST] Running test ...
+UVM_INFO tests/uvm-tests/uvm_test.sv(21) @ 0: reporter [RESULT] build phase completed
+UVM_INFO tests/uvm-tests/uvm_test.sv(26) @ 0: reporter [RESULT] connect phase completed
+UVM_INFO tests/uvm-tests/uvm_test.sv(31) @ 0: reporter [RESULT] end of elaboration phase completed
+UVM_INFO tests/uvm-tests/uvm_test.sv(36) @ 0: reporter [RESULT] start of simulation phase completed
+UVM_INFO tests/uvm-tests/uvm_test.sv(40) @ 0: reporter [RESULT] run phase phase completed
