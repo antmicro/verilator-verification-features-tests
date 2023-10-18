@@ -13,7 +13,7 @@ shift
 export PATH="$VERILATOR_ROOT/bin:$PATH"
 
 # we use relative paths in order to easily compare the output
-UVM_DIR=uvm/src
+UVM_DIR=uvm/
 
 SUITE_DIR=tests/$SUITE
 
@@ -22,6 +22,9 @@ OUT_DIR=$REPO_DIR/out/$SUITE/uvm
 mkdir -p $OUT_DIR
 mkdir -p $REPO_DIR/out/$SUITE/$TEST
 
-verilator --binary $UVM_DIR/uvm.sv -I$UVM_DIR $SUITE_DIR/uvm_test.sv -Mdir $OUT_DIR --timing -DUVM_NO_DPI -Wno-lint -Wno-style -Wno-CONSTRAINTIGN -Wno-ZERODLY -Wno-SYMRSVDWORD --build-jobs `nproc` --prefix Vtop $@
-timeout 100 $OUT_DIR/Vtop +$TEST | tee ${TEST}_output.txt
+#verilator --binary $UVM_DIR/uvm.sv -I$UVM_DIR $SUITE_DIR/uvm_test.sv -Mdir $OUT_DIR --timing -DUVM_NO_DPI -Wno-lint -Wno-style -Wno-CONSTRAINTIGN -Wno-ZERODLY -Wno-SYMRSVDWORD --build-jobs `nproc` --prefix Vtop $@
+#timeout 100 $OUT_DIR/Vtop +$TEST | tee ${TEST}_output.txt
+
+timeout 100 ~/intelFPGA_pro/22.4/questa_fe/bin/qrun -uvmhome $UVM_DIR ${SUITE_DIR}/uvm_test.sv +$TEST | ./filter_output.py > $SUITE_DIR/expected_outputs/${TEST}_expected_output.txt
+
 diff ${TEST}_output.txt $SUITE_DIR/expected_outputs/${TEST}_expected_output.txt
