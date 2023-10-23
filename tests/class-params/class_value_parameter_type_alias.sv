@@ -16,7 +16,7 @@ module top (
     output logic [7:0] o
 );
     SelfRefClassIntParam src1;
-    SelfRefClassIntParam::self_int_t src10;
+    SelfRefClassIntParam#(1)::self_int_t src10;
     initial begin
         src1 = new;
         src10 = new;
