@@ -4,8 +4,8 @@
 */
 
 class Cls;
-   function static int get_cnt;
-      int cnt = 0;
+   static function int get_cnt;
+      static int cnt = 0;
       cnt++;
       return cnt;
    endfunction
