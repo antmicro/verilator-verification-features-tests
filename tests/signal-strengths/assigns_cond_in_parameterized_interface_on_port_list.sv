@@ -25,7 +25,7 @@ module top (
 );
    wire         c;
    inter i(.cond(1'b1), .a(c));
-   sub u_sub (i, .b(o));
+   sub u_sub (.i(i), .b(o));
    
    always begin
       if (o)

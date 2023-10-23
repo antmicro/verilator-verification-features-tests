@@ -13,6 +13,10 @@ module top (
 );
     virtual interface intf signals;
     virtual intf signals2;
-    intf i;
-    initial $finish;
+    intf i();
+    initial begin
+        signals = i;
+        signals2 = signals;
+        $finish;
+    end
 endmodule

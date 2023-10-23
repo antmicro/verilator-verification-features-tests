@@ -19,6 +19,10 @@ module top (
     input clk
 );
     Hold h;
-    intf i;
-    initial $finish;
+    intf i();
+    initial begin
+        h = new;
+        h.signals = i;
+        $finish;
+    end
 endmodule
