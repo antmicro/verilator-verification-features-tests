@@ -26,5 +26,27 @@ UVM_INFO @ 0: reporter [RNTST] Running test ...
 UVM_INFO tests/uvm-tests/uvm_test.sv(21) @ 0: reporter [RESULT] build phase completed
 UVM_INFO tests/uvm-tests/uvm_test.sv(26) @ 0: reporter [RESULT] connect phase completed
 UVM_INFO tests/uvm-tests/uvm_test.sv(31) @ 0: reporter [RESULT] end of elaboration phase completed
+UVM_INFO uvm/src/base/uvm_traversal.svh(289) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING uvm/src/base/uvm_traversal.svh(274) @ 0: reporter [UVM/COMP/NAME] the name "C" of the component "C" violates the uvm component name constraints
 UVM_INFO tests/uvm-tests/uvm_test.sv(36) @ 0: reporter [RESULT] start of simulation phase completed
 UVM_INFO tests/uvm-tests/uvm_test.sv(40) @ 0: reporter [RESULT] run phase phase completed
+UVM_INFO tests/uvm-tests/uvm_test.sv(45) @ 0: reporter [RESULT] extract phase completed
+UVM_INFO tests/uvm-tests/uvm_test.sv(50) @ 0: reporter [RESULT] check phase completed
+UVM_INFO tests/uvm-tests/uvm_test.sv(55) @ 0: reporter [RESULT] report phase completed
+UVM_INFO uvm/src/base/uvm_report_server.svh(864) @ 0: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   12
+UVM_WARNING :    8
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RESULT]     9
+[RNTST]     1
+[TPRGED]     7
+[UVM/COMP/NAME]     1
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+
+- uvm/src/base/uvm_root.svh:585: Verilog $finish

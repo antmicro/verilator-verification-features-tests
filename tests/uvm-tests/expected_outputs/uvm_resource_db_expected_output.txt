@@ -23,3 +23,22 @@ All Rights Reserved Worldwide
 
 UVM_INFO @ 0: reporter [RNTST] Running test ...
 UVM_INFO tests/uvm-tests/uvm_test.sv(79) @ 0: ReadByName [RESULT] read_by_name successful
+UVM_INFO uvm/src/base/uvm_traversal.svh(289) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING uvm/src/base/uvm_traversal.svh(274) @ 0: reporter [UVM/COMP/NAME] the name "ReadByName" of the component "ReadByName" violates the uvm component name constraints
+UVM_INFO uvm/src/base/uvm_report_server.svh(864) @ 0: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    4
+UVM_WARNING :    8
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RESULT]     1
+[RNTST]     1
+[TPRGED]     7
+[UVM/COMP/NAME]     1
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+
+- uvm/src/base/uvm_root.svh:585: Verilog $finish

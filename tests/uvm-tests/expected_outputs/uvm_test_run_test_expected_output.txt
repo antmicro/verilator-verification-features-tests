@@ -22,4 +22,23 @@ All Rights Reserved Worldwide
       (Specify +UVM_NO_RELNOTES to turn off this notice)
 
 UVM_INFO @ 0: reporter [RNTST] Running test MyUvmTest...
+UVM_INFO uvm/src/base/uvm_traversal.svh(289) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING uvm/src/base/uvm_traversal.svh(274) @ 0: reporter [UVM/COMP/NAME] the name "uvm_test_top" of the component "uvm_test_top" violates the uvm component name constraints
 UVM_INFO tests/uvm-tests/uvm_test.sv(144) @ 0: uvm_test_top [RESULT] SUCCESS, MyUvmTest called
+UVM_INFO uvm/src/base/uvm_report_server.svh(864) @ 0: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    4
+UVM_WARNING :    8
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RESULT]     1
+[RNTST]     1
+[TPRGED]     7
+[UVM/COMP/NAME]     1
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+
+- uvm/src/base/uvm_root.svh:585: Verilog $finish
