@@ -148,9 +148,7 @@ endclass
 
 module top;
     initial begin
-       if ($test$plusargs("empty")) begin
-          
-       end else if ($test$plusargs("simple_uvm_agent")) begin
+       if ($test$plusargs("simple_uvm_agent")) begin
           Simple#(uvm_agent) obj;
           obj = new("C");
        end else if ($test$plusargs("simple_uvm_component")) begin
