@@ -26,7 +26,7 @@ class mem_sequence extends uvm_sequence#(mem_seq_item);
     req = mem_seq_item::type_id::create("req");
     wait_for_grant();
     req.randomize();
-    req.addr[1:0] = 2'd0; // Align to 4
+    req.addr = (req.addr / 4) * 4; // Align to 4
     send_request(req);
     wait_for_item_done();
    end
