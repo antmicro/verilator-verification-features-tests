@@ -9,3 +9,6 @@
 	path = uvm
 	url = git@github.com:antmicro/uvm-verilator.git
 	branch = current-patches
+[submodule "third_party/veer-el2"]
+	path = third_party/veer-el2
+	url = https://github.com/chipsalliance/Cores-VeeR-EL2
