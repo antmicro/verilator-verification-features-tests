@@ -61,6 +61,7 @@ snapshots/default/el2_param.vh:
 # Make UVM test with Verilator
 # -------------------------------------
 $(SIM_DIR)/$(SIM_NAME).mk: snapshots/default/el2_param.vh $(VERILOG_SOURCES) $(wildcard hdl/*.sv)
+	sed -i 's/ifdef VERILATOR/ifdef XXXX/g' ../../../third_party/veer-el2/design/lsu/el2_lsu_dccm_mem.sv # FIXME: Patch source to disable "ifdef VERILATOR". Can't undef it as it has to be set for UVM sources.
 	$(VERILATOR) --cc --exe --main --timing -Mdir $(SIM_DIR) \
 	${COMPILE_ARGS} ${EXTRA_ARGS} \
 	${VERILOG_DEFINE_FILES} \

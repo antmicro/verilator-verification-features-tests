@@ -69,6 +69,15 @@ module tbench_top;
     .dccm_rd_data_lo    (intf.rdata)
   );
 
+  // Debug, dump memory signals on each clock cycle
+  always @(posedge intf.clk)
+    $display("a:%08X w:%d wd:%08X r:%d rd:%08X",
+        intf.addr,
+        intf.wr_en,
+        intf.wdata,
+        intf.rd_en,
+        intf.rdata);
+
   //---------------------------------------
   //passing the interface handle to lower heirarchy using set method
   //and enabling the wave dump
