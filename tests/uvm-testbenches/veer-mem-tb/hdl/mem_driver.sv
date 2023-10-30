@@ -51,16 +51,18 @@ class mem_driver extends uvm_driver #(mem_seq_item);
     `DRIV_IF.addr <= req.addr;
 
     if(req.wr_en) begin // write operation
-      `DRIV_IF.wr_en <= req.wr_en;
+      `uvm_info(get_type_name(), $sformatf("WR: 0x%08X <= 0x%08X", req.addr, req.wdata), UVM_LOW)
+      `DRIV_IF.wr_en <= 1'b1;//req.wr_en;
       `DRIV_IF.wdata <= req.wdata;
       @(posedge vif.clk);
     end
     else if(req.rd_en) begin //read operation
-      `DRIV_IF.rd_en <= req.rd_en;
+      `DRIV_IF.rd_en <= 1'b1;//req.rd_en;
       @(posedge vif.clk);
       `DRIV_IF.rd_en <= 0;
       @(posedge vif.clk);
       req.rdata = `DRIV_IF.rdata;
+      `uvm_info(get_type_name(), $sformatf("RD: 0x%08X => 0x%08X", req.addr, req.rdata), UVM_LOW)
     end
 
   endtask : drive

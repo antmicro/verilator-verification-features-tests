@@ -1,2 +1,4 @@
 *-sim
 snapshots
+*.vcd
+*.fst

@@ -4,6 +4,8 @@
 
 class mem_scoreboard extends uvm_scoreboard;
 
+ `include "el2_param.vh" ;
+
   //---------------------------------------
   // declaring pkt_qu to store the pkt's recived from monitor
   //---------------------------------------
@@ -12,7 +14,7 @@ class mem_scoreboard extends uvm_scoreboard;
   //---------------------------------------
   // sc_mem
   //---------------------------------------
-  bit [7:0] sc_mem [4];
+  bit [pt.DCCM_FDATA_WIDTH-1:0] sc_mem [int];
 
   //---------------------------------------
   //port to recive packets from monitor
@@ -32,7 +34,7 @@ class mem_scoreboard extends uvm_scoreboard;
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
       item_collected_export = new("item_collected_export", this);
-      foreach(sc_mem[i]) sc_mem[i] = 8'hFF;
+      foreach(sc_mem[i]) sc_mem[i] = {(pt.DCCM_FDATA_WIDTH){1'b1}};
   endfunction: build_phase
 
   //---------------------------------------
@@ -69,10 +71,10 @@ class mem_scoreboard extends uvm_scoreboard;
           `uvm_info(get_type_name(),"------------------------------------",UVM_LOW)
         end
         else begin
-          `uvm_error(get_type_name(),"------ :: READ DATA MisMatch :: ------")
-          `uvm_info(get_type_name(),$sformatf("Addr: %0h",mem_pkt.addr),UVM_LOW)
-          `uvm_info(get_type_name(),$sformatf("Expected Data: %0h Actual Data: %0h",sc_mem[mem_pkt.addr],mem_pkt.rdata),UVM_LOW)
-          `uvm_info(get_type_name(),"------------------------------------",UVM_LOW)
+          `uvm_error(get_type_name(),"------ :: READ DATA Mismatch :: ------")
+          `uvm_error(get_type_name(),$sformatf("Addr: %0h",mem_pkt.addr))
+          `uvm_error(get_type_name(),$sformatf("Expected Data: %0h Actual Data: %0h",sc_mem[mem_pkt.addr],mem_pkt.rdata))
+          `uvm_error(get_type_name(),"------------------------------------")
         end
       end
     end

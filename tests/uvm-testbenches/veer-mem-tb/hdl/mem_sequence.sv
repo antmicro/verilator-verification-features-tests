@@ -26,6 +26,7 @@ class mem_sequence extends uvm_sequence#(mem_seq_item);
     req = mem_seq_item::type_id::create("req");
     wait_for_grant();
     req.randomize();
+    req.addr[1:0] = 2'd0; // Align to 4
     send_request(req);
     wait_for_item_done();
    end
@@ -48,7 +49,13 @@ class write_sequence extends uvm_sequence#(mem_seq_item);
   endfunction
 
   virtual task body();
-    `uvm_do(req) //FIXME: Replace with `uvm_do_with to randomize and select write/read
+    req = mem_seq_item::type_id::create("req");
+    wait_for_grant();
+    req.randomize();
+    req.wr_en = 1'b1;
+    req.rd_en = 1'b0;
+    send_request(req);
+    wait_for_item_done();
   endtask
 endclass
 //=========================================================================
@@ -68,7 +75,13 @@ class read_sequence extends uvm_sequence#(mem_seq_item);
   endfunction
 
   virtual task body();
-    `uvm_do(req) //FIXME: Replace with `uvm_do_with to randomize and select write/read
+    req = mem_seq_item::type_id::create("req");
+    wait_for_grant();
+    req.randomize();
+    req.wr_en = 1'b0;
+    req.rd_en = 1'b1;
+    send_request(req);
+    wait_for_item_done();
   endtask
 endclass
 //=========================================================================
@@ -88,8 +101,23 @@ class write_read_sequence extends uvm_sequence#(mem_seq_item);
   endfunction
 
   virtual task body();
-    `uvm_do(req) //FIXME: Replace with `uvm_do_with to randomize and select write/read
-    `uvm_do(req) //FIXME: Replace with `uvm_do_with to randomize and select write/read
+
+    // Do randomized write
+    req = mem_seq_item::type_id::create("req");
+    wait_for_grant();
+    req.randomize();
+    req.wr_en = 1'b1;
+    req.rd_en = 1'b0;
+    send_request(req);
+    wait_for_item_done();
+
+    // Do read from the same address
+    wait_for_grant();
+    req.wr_en = 1'b0;
+    req.rd_en = 1'b1;
+    send_request(req);
+    wait_for_item_done();
+
   endtask
 endclass
 //=========================================================================
@@ -103,8 +131,7 @@ class wr_rd_sequence extends uvm_sequence#(mem_seq_item);
   //---------------------------------------
   //Declaring sequences
   //---------------------------------------
-  write_sequence wr_seq;
-  read_sequence  rd_seq;
+  write_read_sequence seq;
 
   `uvm_object_utils(wr_rd_sequence)
 
@@ -116,8 +143,9 @@ class wr_rd_sequence extends uvm_sequence#(mem_seq_item);
   endfunction
 
   virtual task body();
-    `uvm_do(wr_seq) //FIXME: Replace with `uvm_do_with to randomize and select write/read
-    `uvm_do(rd_seq) //FIXME: Replace with `uvm_do_with to randomize and select write/read
+    repeat(10) begin
+      `uvm_do(seq)
+    end
   endtask
 endclass
 //=========================================================================

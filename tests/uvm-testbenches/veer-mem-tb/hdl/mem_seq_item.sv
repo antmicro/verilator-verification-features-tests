@@ -3,14 +3,17 @@
 //-------------------------------------------------------------------------
 
 class mem_seq_item extends uvm_sequence_item;
+
+ `include "el2_param.vh" ;
+
   //---------------------------------------
   //data and control fields
   //---------------------------------------
-  rand bit [1:0] addr;
+  rand bit [pt.DCCM_BITS-1:0] addr;
   rand bit       wr_en;
   rand bit       rd_en;
-  rand bit [7:0] wdata;
-       bit [7:0] rdata;
+  rand bit [pt.DCCM_FDATA_WIDTH-1:0] wdata;
+       bit [pt.DCCM_FDATA_WIDTH-1:0] rdata;
 
   //---------------------------------------
   //Utility and Field macros

@@ -2,15 +2,17 @@
 //						mem_interface - www.verificationguide.com
 //-------------------------------------------------------------------------
 
-interface mem_if(input logic clk,reset);
+interface mem_if (input logic clk,reset);
+
+ `include "el2_param.vh" ;
 
   //---------------------------------------
   //declaring the signals
   //---------------------------------------
-  logic [1:0] addr;
+  logic [pt.DCCM_BITS-1:0] addr;
   logic wr_en;
   logic rd_en;
-  logic [7:0] wdata;
-  logic [7:0] rdata;
+  logic [pt.DCCM_FDATA_WIDTH-1:0] wdata;
+  logic [pt.DCCM_FDATA_WIDTH-1:0] rdata;
 
 endinterface

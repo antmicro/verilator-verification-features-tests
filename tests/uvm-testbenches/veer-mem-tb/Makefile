@@ -43,7 +43,7 @@ COMPILE_ARGS += -DUVM_NO_DPI
 COMPILE_ARGS += -fno-gate
 COMPILE_ARGS += --prefix $(SIM_NAME) -o $(SIM_NAME)
 COMPILE_ARGS += $(addprefix +incdir+, $(VERILOG_INCLUDE_DIRS))
-EXTRA_ARGS += --timescale 1ns/1ps --error-limit 100
+EXTRA_ARGS += --timescale 1ns/1ps --error-limit 100 --trace --trace-structs
 WARNING_ARGS += -Wno-lint \
 	-Wno-style \
 	-Wno-SYMRSVDWORD \
@@ -60,7 +60,7 @@ snapshots/default/el2_param.vh:
 # -------------------------------------
 # Make UVM test with Verilator
 # -------------------------------------
-$(SIM_DIR)/$(SIM_NAME).mk: snapshots/default/el2_param.vh $(VERILOG_SOURCES)
+$(SIM_DIR)/$(SIM_NAME).mk: snapshots/default/el2_param.vh $(VERILOG_SOURCES) $(wildcard hdl/*.sv)
 	$(VERILATOR) --cc --exe --main --timing -Mdir $(SIM_DIR) \
 	${COMPILE_ARGS} ${EXTRA_ARGS} \
 	${VERILOG_DEFINE_FILES} \

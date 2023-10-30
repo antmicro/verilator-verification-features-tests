@@ -34,6 +34,14 @@ module tbench_top;
   end
 
   //---------------------------------------
+  //trace dump
+  //---------------------------------------
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(0, tbench_top);
+  end
+
+  //---------------------------------------
   //interface instance
   //---------------------------------------
   mem_if intf(clk,reset);
@@ -41,15 +49,6 @@ module tbench_top;
   //---------------------------------------
   //DUT instance
   //---------------------------------------
-//  memory DUT (
-//    .clk(intf.clk),
-//    .reset(intf.reset),
-//    .addr(intf.addr),
-//    .wr_en(intf.wr_en),
-//    .rd_en(intf.rd_en),
-//    .wdata(intf.wdata),
-//    .rdata(intf.rdata)
-//   );
 
   el2_lsu_dccm_mem DUT (
     .clk                (intf.clk),
@@ -66,8 +65,8 @@ module tbench_top;
     .dccm_rd_addr_lo    (intf.addr),
     .dccm_wr_data_hi    (intf.wdata),
     .dccm_wr_data_lo    (intf.wdata),
-    .dccm_rd_data_hi    (intf.rdata),
-    .dccm_rd_data_lo    () // For aligned access same as data_hi
+    .dccm_rd_data_hi    (), // For aligned read/write this should match the lo part
+    .dccm_rd_data_lo    (intf.rdata)
   );
 
   //---------------------------------------
