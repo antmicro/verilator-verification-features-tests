@@ -22,7 +22,6 @@ VERILOG_INCLUDE_DIRS = hdl ${UVM_ROOT}/src
 SIM_NAME ?= mem_tb
 SIM_DIR := $(SIM_NAME)-sim
 COMPILE_ARGS += -DUVM_NO_DPI
-COMPILE_ARGS += -fno-gate
 COMPILE_ARGS += --prefix $(SIM_NAME) -o $(SIM_NAME)
 COMPILE_ARGS += $(addprefix +incdir+, $(VERILOG_INCLUDE_DIRS))
 EXTRA_ARGS += --timescale 1ns/1ps --error-limit 100
