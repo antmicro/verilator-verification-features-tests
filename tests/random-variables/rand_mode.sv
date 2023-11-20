@@ -15,7 +15,8 @@ class Cls;
 endclass
 
 module top (
-    output logic [7:0] o
+            input              clk,
+            output logic [7:0] o
 );
     Cls obj;
     initial begin

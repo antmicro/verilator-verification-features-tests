@@ -6,7 +6,8 @@
 */
 
 module top (
-    output int o
+            input clk,
+            output int o
 );
    int val;
    initial begin

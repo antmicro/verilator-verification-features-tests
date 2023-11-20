@@ -5,7 +5,7 @@
    *** End of description
 */
 
-module top;
+module top(input clk);
    task display_sequence();
    // Example
      randsequence (main)
