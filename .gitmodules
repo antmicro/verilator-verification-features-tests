@@ -7,5 +7,5 @@
 	branch = randomize-constraints-crave
 [submodule "uvm"]
 	path = uvm
-	url = git@github.com:antmicro/uvm-verilator.git
+	url = https://github.com/antmicro/uvm-verilator.git
 	branch = current-patches
