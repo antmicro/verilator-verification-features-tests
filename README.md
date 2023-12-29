@@ -15,9 +15,29 @@ and more.
 
 ## Usage
 
-To run these tests, you need Robot Framework, PyYAML and Jinja2 installed on
-your system. `gen-tests` is a script that generates Robot test files for each
-test in the `tests` directory. To generate and run all tests:
+This repository contains several submodules that have their own submodules as well. In order to build proberly, after
+cloning this repository, you shall run the following command within the repository directory:
+
+```
+git submodule update --init --recursive
+```
+
+To run these tests, you need [Robot Framework](https://pypi.org/project/robotframework/),
+[PyYAML](https://pypi.org/project/PyYAML/) and [Jinja2](https://pypi.org/project/Jinja2/) installed on your system.
+
+To automate the process, you can use [act](https://github.com/nektos/act) as a workflow tool. Even though it is
+practical to execute, this flow would not generate the reports within the local repository directory. If you want to
+run the workflow manually and get the report automatically, you shall first build the tools manually. In order to do so,
+execute the commands below when you are within the repository directory for running a basic script:
+
+```
+cd {REPO_DIR}/scripts
+chmod +x build_and_run.sh
+./build_and_run.sh {OPTIONAL_BUILD_OPTS}
+```
+
+`gen-tests` is a script that generates Robot test files for each test in the `tests` directory. To generate and run
+all tests:
 
 ```
 ./gen-tests
