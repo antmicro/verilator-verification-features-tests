@@ -37,7 +37,11 @@ within the repository directory for running a basic script:
 
 ```
 cd {REPO_DIR}/scripts
+```
+```
 chmod +x build_and_run.sh
+```
+```
 ./build_and_run.sh {OPTIONAL_BUILD_OPTS}
 ```
 
@@ -46,6 +50,8 @@ chmod +x build_and_run.sh
 
 ```
 ./gen-tests
+```
+```
 robot *.robot
 ```
 
