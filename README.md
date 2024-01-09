@@ -32,6 +32,16 @@ git submodule update --init --recursive
 ```
 
 
+Or, you may clone the directory through running:
+
+
+```
+git clone --recursive
+```
+
+In order to clone the repository without a need for recursive submodule update.
+
+
 ### Requirements
 
 
