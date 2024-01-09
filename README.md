@@ -55,7 +55,7 @@ To run these tests, you need
 
 
 To automate the process, you can use [act](https://github.com/nektos/act) as a
-workflow tool. Even though it is practical to execute, this flow would not
+workflow tool. Even though it is practical to execute, this flow does not
 generate the reports within the local repository directory. If you want to run
 the workflow manually and get the report automatically, you must first build the
 tools manually. In order to do so, execute the commands below when you are
