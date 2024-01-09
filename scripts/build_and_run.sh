@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # Determine the directory where the script is located
 SCRIPT_DIR=$(realpath $(dirname "$0"))
