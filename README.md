@@ -51,7 +51,7 @@ To run these tests, you need
 [Jinja2](https://pypi.org/project/Jinja2/) installed on your system.
 
 
-### Automation
+### Build and run automatically
 
 
 To automate the process, you can use [act](https://github.com/nektos/act) as a
