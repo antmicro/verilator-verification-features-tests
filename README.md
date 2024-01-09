@@ -25,13 +25,13 @@ use the **scripts/build_and_run.sh** script for executing the flow):
 git submodule update --init --recursive
 ```
 
-Or, you may clone the directory through running:
+Or, you may clone the repository by running:
 
 ```
 git clone --recursive
 ```
 
-In order to clone the repository without a need for recursive submodule update.
+to avoid the need for recursive submodule update.
 
 
 ### Requirements
