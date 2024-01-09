@@ -77,7 +77,7 @@ to examine {OPTIONAL_BUILD_OPTS}, refer to [Manually generate and run tests](#ma
 section below.
 
 
-### Test Generation and Test Run
+### Manually generate and run tests
 
 
 `gen-tests` is a script that generates Robot test files for each test in the
