@@ -26,10 +26,6 @@ execute_and_log() {
 echo "Starting build & run script..."
 execute_and_log "git submodule update --init --recursive"
 
-# Adjust the directory changes to be relative to the script's location
-execute_and_log "cd $SCRIPT_DIR/.."
-execute_and_log "pwd"
-
 echo "Building verilator/master..."
 execute_and_log "cd $SCRIPT_DIR/../verilator/master"
 execute_and_log "pwd"
