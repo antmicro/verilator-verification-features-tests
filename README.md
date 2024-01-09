@@ -22,7 +22,7 @@ and more.
 
 
 This repository contains several submodules that have their own submodules as
-well. In order to build properly, after cloning this repository, you shall run
+well. In order to build properly, after cloning this repository, run
 the following command within the repository directory (not necessary if you
 use the **scripts/build_and_run.sh** script for executing the flow):
 
