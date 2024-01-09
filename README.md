@@ -48,8 +48,8 @@ To automate the process, you can use [act](https://github.com/nektos/act) as a
 workflow tool. Even though it is practical to execute, this flow does not
 generate the reports within the local repository directory. If you want to run
 the workflow manually and get the report automatically, you must first build the
-tools manually. In order to do so, execute the commands below when you are
-within the repository directory for running a basic script:
+tools manually. In order to do so through the provided build and run bash script,
+execute the commands below when you are within the repository directory:
 
 ```
 chmod +x scripts/build_and_run.sh
@@ -61,8 +61,9 @@ chmod +x scripts/build_and_run.sh
 This script runs the git initialization, Verilator builds, test generation, and
 test run. If you would like to run specific commands within the flow, you may
 examine **.github/workflows/test.yml** or **scripts/build_and_run.sh**. In order
-to examine {OPTIONAL_BUILD_OPTS}, refer to [Manually generate and run tests](#manually-generate-and-run-tests)
-section below.
+to examine {OPTIONAL_BUILD_OPTS}, refer to
+[Manually generate and run tests](#manually-generate-and-run-tests) section
+below.
 
 
 ### Manually generate and run tests
