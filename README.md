@@ -73,7 +73,7 @@ chmod +x scripts/build_and_run.sh
 This script runs the git initialization, Verilator builds, test generation, and
 test run. If you would like to run specific commands within the flow, you may
 examine **.github/workflows/test.yml** or **scripts/build_and_run.sh**. In order
-to examine {OPTIONAL_BUILD_OPTS}, refer to the **Test Generation and Test Run**
+to examine {OPTIONAL_BUILD_OPTS}, refer to [Manually generate and run tests](#manually-generate-and-run-tests)
 section below.
 
 
