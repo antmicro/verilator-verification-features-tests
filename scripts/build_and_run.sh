@@ -19,7 +19,7 @@ execute_and_log() {
     echo "--------------------------------------------------" >> "$LOGFILE"
     echo "COMMAND: $COMMAND $ARGS" >> "$LOGFILE"
     echo "OUTPUT:" >> "$LOGFILE"
-    $COMMAND "$ARGS" >> "$LOGFILE" 2>&1
+    eval "$COMMAND $ARGS" >> "$LOGFILE" 2>&1
     echo "--------------------------------------------------" >> "$LOGFILE"
 }
 
