@@ -1,0 +1,120 @@
+#!/bin/env bash
+
+# Determine the directory where the script is located
+SCRIPT_DIR=$(realpath $(dirname "$0"))
+MAIN_DIR=$SCRIPT_DIR/..
+
+# Define the log file relative to the script's location
+LOGFILE="$MAIN_DIR/build_and_run.log"
+
+# Clear the log file at the start of the script
+> "$LOGFILE"
+
+# Set the name of test report file
+REPORTFILE="report.html"
+
+# Function to execute a command and log its output
+execute_and_log() {
+    COMMAND="$1"
+    shift
+    ARGS="$@"
+    echo "Executing: $COMMAND $ARGS"
+    echo "--------------------------------------------------" >> "$LOGFILE"
+    echo "COMMAND: $COMMAND $ARGS" >> "$LOGFILE"
+    echo "OUTPUT:" >> "$LOGFILE"
+    eval "$COMMAND $ARGS" >> "$LOGFILE" 2>&1
+    echo "--------------------------------------------------" >> "$LOGFILE"
+}
+
+# Functions corresponding to each step of the workflow
+setup() {
+    echo "Starting build & run script..."
+    execute_and_log "git submodule update --init --recursive"
+    echo "Submodules are fetched and updated."
+}
+
+build() {
+    if [ "$1" = "all" ]; then
+        builds=$(find "$MAIN_DIR/verilator/" -maxdepth 1 -mindepth 1 -type d -exec basename {} \;)
+        for build in $builds; do
+            echo "Building verilator/$build..."
+            execute_and_log "cd $MAIN_DIR/verilator/$build"
+            execute_and_log "pwd"
+            execute_and_log "git show -q"
+            execute_and_log "autoconf"
+            execute_and_log "./configure"
+            execute_and_log "make -j$(nproc)"
+            echo "verilator/$build build is done."
+        done
+    else
+        if [ -d "$MAIN_DIR/verilator/$1" ]; then
+            echo "Building verilator/$1..."
+            execute_and_log "cd $MAIN_DIR/verilator/$1"
+            execute_and_log "pwd"
+            execute_and_log "git show -q"
+            execute_and_log "autoconf"
+            execute_and_log "./configure"
+            execute_and_log "make -j$(nproc)"
+            echo "verilator/$1 build is done."
+        else
+            echo "Error: Build directory for '$1' does not exist." >&2
+            exit 1
+        fi
+    fi
+}
+
+gen_tests() {
+    if [ "$1" = "all" ]; then
+        builds=$(find "$MAIN_DIR/verilator/" -maxdepth 1 -mindepth 1 -type d -exec basename {} \;)
+        for build in $builds; do
+            echo "Generating tests for verilator/$build..."
+            execute_and_log "cd $MAIN_DIR/"
+            execute_and_log "pwd"
+            execute_and_log "./gen-tests $build"
+            echo "Tests for verilator/$build are generated."
+        done
+    else
+        if [ -d "$MAIN_DIR/verilator/$1" ]; then
+            echo "Generating tests for verilator/$1..."
+            execute_and_log "cd $MAIN_DIR/"
+            execute_and_log "pwd"
+            execute_and_log "./gen-tests $1"
+            echo "Tests for verilator/$1 are generated."
+        else
+            echo "Error: Build directory for '$1' does not exist." >&2
+            exit 1
+        fi
+    fi
+}
+
+run_tests() {
+    echo "Running tests..."
+    execute_and_log "robot $MAIN_DIR/*.robot"
+    echo "Test runs are done. Generated report: $REPORTFILE."
+}
+
+# If no arguments are given, run all steps
+if [[ $# -eq 0 ]] ; then
+    echo "No arguments are given, running the whole routine..."
+    setup
+    for BRANCH in $(ls $MAIN_DIR/verilator); do
+        build $BRANCH
+        gen_tests $BRANCH
+    done
+    run_tests
+fi
+
+# Parse arguments and run individual steps
+while [ -n "$1" ]; do
+    case "$1" in
+        --setup) setup;;
+        --build) shift; build "$1";;
+        --gen-tests) shift; gen_tests "$1";;
+        --run-tests) run_tests;;
+        --help) echo "Usage: $0 [--setup] [--build <branch>] [--gen-tests <branch>] [--run-tests]"; exit 0;;
+        *) echo "Option $1 not recognized" >&2; exit 1;;
+    esac
+    shift
+done 
+
+echo "Script execution is done."
