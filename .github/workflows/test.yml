@@ -62,6 +62,10 @@ jobs:
         sudo pip3 install jinja2
         sudo pip3 install robotframework
 
+    - name: Setup repository
+      working-directory: scripts/
+      run: ./build_and_run --setup
+
     - name: Cache $CCACHE_DIR
       uses: actions/cache@v2
       with:
@@ -73,13 +77,20 @@ jobs:
       env:
         CC: gcc-11
         CXX: g++-11
-      run: scripts/build_and_run --build ${{ matrix.VERILATOR_BRANCH }}
+      run: ./../../scripts/build_and_run --build ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Generate Robot test files
-      run: scripts/build_and_run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
+      run: ./scripts/build_and_run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Run tests
-      run: scripts/build_and_run --run-tests
+      run: |
+        for TEST_SUITE_FILE in $(ls *.robot); do
+            TEST_SUITE="${TEST_SUITE_FILE%.*}"
+            robot --report NONE --log NONE \
+                  --output $TEST_SUITE.xml \
+                  $TEST_SUITE_FILE || \
+            [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
+        done
 
     - name: Upload test output
       uses: actions/upload-artifact@v3
