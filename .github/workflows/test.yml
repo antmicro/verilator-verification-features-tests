@@ -83,14 +83,7 @@ jobs:
       run: ./scripts/build_and_run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Run tests
-      run: |
-        for TEST_SUITE_FILE in $(ls *.robot); do
-            TEST_SUITE="${TEST_SUITE_FILE%.*}"
-            robot --report NONE --log NONE \
-                  --output $TEST_SUITE.xml \
-                  $TEST_SUITE_FILE || \
-            [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
-        done
+      run: ./scripts/build_and_run --run-tests
 
     - name: Upload test output
       uses: actions/upload-artifact@v3
