@@ -62,15 +62,15 @@ jobs:
         sudo pip3 install jinja2
         sudo pip3 install robotframework
 
-    - name: Setup repository
-      working-directory: scripts/
-      run: ./build_and_run --setup
-
     - name: Cache $CCACHE_DIR
       uses: actions/cache@v2
       with:
         path: ${{ env.CCACHE_DIR }}
         key: ${{ matrix.VERILATOR_BRANCH }}
+
+    - name: Setup repository
+      working-directory: scripts/
+      run: ./build_and_run --setup
 
     - name: Build Verilator
       working-directory: verilator/${{ matrix.VERILATOR_BRANCH }}
