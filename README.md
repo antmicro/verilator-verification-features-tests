@@ -49,21 +49,35 @@ workflow tool. Even though it is practical to execute, this flow does not
 generate the reports within the local repository directory. If you want to run
 the workflow manually and get the report automatically, you must first build the
 tools manually. In order to do so through the provided build and run bash script,
-execute the commands below when you are within the repository directory:
+execute the command below when you are within the repository directory:
 
-```
-chmod +x scripts/build_and_run.sh
-```
 ```
 ./scripts/build_and_run.sh {OPTIONAL_BUILD_OPTS}
 ```
 
 This script runs the git initialization, Verilator builds, test generation, and
 test run. If you would like to run specific commands within the flow, you may
-examine **.github/workflows/test.yml** or **scripts/build_and_run.sh**. In order
-to examine {OPTIONAL_BUILD_OPTS}, refer to
-[Manually generate and run tests](#manually-generate-and-run-tests) section
-below.
+examine **.github/workflows/test.yml** or **scripts/build_and_run.sh**. Running the
+script without any **{OPTIONAL_BUILD_OPTS}** would execute all the steps in the
+flow. Run the script with **-help** option to get more details on running specific
+steps within the flow.
+
+```
+./scripts/build_and_run.sh --help
+```
+
+# Parse arguments and run individual steps
+
+**{OPTINONAL_BUILD_OPTS}** are listed below:
+
+- **--setup** Sets up the submodules within this repository recursively.
+- **--build {TARGET}** Builds the TARGET Verilator branch. Using **--build all** builds
+all the Verilator targets within the repository.
+- **--gen-tests {TARGET}** Generates tests to be run for the TARGET Verilator branches.
+Using **--gen-tests all** generates all the tests within the repository.
+- **--run-tests** Runs the generated tests and generates the reports.
+**[TBD] flags will be included.**
+- **--help** Lists the OPTINONAL_BUILD_OPTS of this script.
 
 
 ### Manually generate and run tests
