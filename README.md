@@ -76,7 +76,7 @@ all the Verilator targets within the repository.
 - **--gen-tests {TARGET}** Generates tests to be run for the TARGET Verilator branches.
 Using **--gen-tests all** generates all the tests within the repository.
 - **--run-tests** Runs the generated tests and generates the reports.
-**[TBD] flags will be included.**
+**[TBD] flags for this option.**
 - **--help** Lists the OPTINONAL_BUILD_OPTS of this script.
 
 
