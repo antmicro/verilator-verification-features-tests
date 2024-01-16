@@ -68,21 +68,19 @@ jobs:
         key: ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Setup repository
-      working-directory: scripts/
-      run: ./build_and_run --setup
+      run: scripts/build_and_run --setup
 
     - name: Build Verilator
-      working-directory: verilator/${{ matrix.VERILATOR_BRANCH }}
       env:
         CC: gcc-11
         CXX: g++-11
-      run: ./../../scripts/build_and_run --build ${{ matrix.VERILATOR_BRANCH }}
+      run: scripts/build_and_run --build ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Generate Robot test files
-      run: ./scripts/build_and_run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
+      run: scripts/build_and_run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Run tests
-      run: ./scripts/build_and_run --run-tests
+      run: scripts/build_and_run --run-tests
 
     - name: Upload test output
       uses: actions/upload-artifact@v3
