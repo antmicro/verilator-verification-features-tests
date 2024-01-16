@@ -46,7 +46,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        submodules: recursive
         fetch-depth: 0
         clean: false
 
@@ -111,7 +110,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        submodules: recursive
         fetch-depth: 0
         clean: false
     - name: Install dependencies
@@ -122,20 +120,13 @@ jobs:
         # install custom theme
         sudo cp -r theme/rebot/ /usr/local/lib/python3.10/dist-packages/robot/htmldata/
 
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        ref: gh-pages
-        fetch-depth: 0
-        clean: false
-
     - name: Download test output
       uses: actions/download-artifact@v2
 
     - name: Create report
       run: |
-        rebot --name "Verification Features" output-*/*.xml || \
-        [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
+        mv output-*/*.xml .
+        scripts/build_and_run --gen-report
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
@@ -144,6 +135,13 @@ jobs:
         path: |
           report.html
           log.html
+
+    - name: Checkout GH Pages branch
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        fetch-depth: 0
+        clean: false
 
     - name: Deploy to GH Pages
       if: github.ref == 'refs/heads/main'

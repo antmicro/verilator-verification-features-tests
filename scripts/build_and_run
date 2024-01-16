@@ -10,9 +10,6 @@ LOGFILE="$MAIN_DIR/build_and_run.log"
 # Clear the log file at the start of the script
 > "$LOGFILE"
 
-# Set the name of test report file
-REPORTFILE="report.html"
-
 # Function to execute a command and log its output
 execute_and_log() {
     COMMAND="$1"
@@ -89,8 +86,17 @@ gen_tests() {
 
 run_tests() {
     echo "Running tests..."
-    execute_and_log "robot $MAIN_DIR/*.robot"
-    echo "Test runs are done. Generated report: $REPORTFILE."
+    for test_suite_file in $MAIN_DIR/*.robot; do
+            test_suite="${test_suite_file%.*}"
+            execute_and_log "robot --report none --log none --output $test_suite.xml $test_suite_file"
+        done
+    echo "Test runs are done."
+}
+
+gen_report() {
+    echo "Generating report..."
+    execute_and_log "rebot --name 'Verification Features' $MAIN_DIR/*.xml"
+    echo "Test report generated."
 }
 
 # If no arguments are given, run all steps
@@ -102,6 +108,7 @@ if [[ $# -eq 0 ]] ; then
         gen_tests $BRANCH
     done
     run_tests
+    gen_report
 fi
 
 # Parse arguments and run individual steps
@@ -111,7 +118,8 @@ while [ -n "$1" ]; do
         --build) shift; build "$1";;
         --gen-tests) shift; gen_tests "$1";;
         --run-tests) run_tests;;
-        --help) echo "Usage: $0 [--setup] [--build <branch>] [--gen-tests <branch>] [--run-tests]"; exit 0;;
+        --gen-report) gen_report;;
+        --help) echo "Usage: $0 [--setup] [--build <branch>] [--gen-tests <branch>] [--run-tests] [--gen-report]"; exit 0;;
         *) echo "Option $1 not recognized" >&2; exit 1;;
     esac
     shift
