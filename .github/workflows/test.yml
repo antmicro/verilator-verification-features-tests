@@ -46,7 +46,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        submodules: recursive
         fetch-depth: 0
         clean: false
 
@@ -69,21 +68,19 @@ jobs:
         key: ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Setup repository
-      working-directory: scripts/
-      run: ./build_and_run --setup
+      run: scripts/build_and_run --setup
 
     - name: Build Verilator
-      working-directory: verilator/${{ matrix.VERILATOR_BRANCH }}
       env:
         CC: gcc-11
         CXX: g++-11
-      run: ./../../scripts/build_and_run --build ${{ matrix.VERILATOR_BRANCH }}
+      run: scripts/build_and_run --build ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Generate Robot test files
-      run: ./scripts/build_and_run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
+      run: scripts/build_and_run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Run tests
-      run: ./scripts/build_and_run --run-tests
+      run: scripts/build_and_run --run-tests
 
     - name: Upload test output
       uses: actions/upload-artifact@v3
@@ -111,7 +108,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        submodules: recursive
         fetch-depth: 0
         clean: false
     - name: Install dependencies
@@ -122,20 +118,13 @@ jobs:
         # install custom theme
         sudo cp -r theme/rebot/ /usr/local/lib/python3.10/dist-packages/robot/htmldata/
 
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        ref: gh-pages
-        fetch-depth: 0
-        clean: false
-
     - name: Download test output
       uses: actions/download-artifact@v2
 
     - name: Create report
       run: |
-        rebot --name "Verification Features" output-*/*.xml || \
-        [ $? -lt 252 ]  # exit code >= 252 means internal Robot error
+        mv output-*/*.xml .
+        scripts/build_and_run --gen-report
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
@@ -144,6 +133,13 @@ jobs:
         path: |
           report.html
           log.html
+
+    - name: Checkout GH Pages branch
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        fetch-depth: 0
+        clean: false
 
     - name: Deploy to GH Pages
       if: github.ref == 'refs/heads/main'
