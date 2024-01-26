@@ -135,17 +135,20 @@ jobs:
           log.html
 
     - name: Checkout GH Pages branch
+      if: github.ref == 'refs/heads/main'
       uses: actions/checkout@v2
       with:
         ref: gh-pages
         fetch-depth: 0
-        clean: false
+        path: gh-pages
 
     - name: Deploy to GH Pages
       if: github.ref == 'refs/heads/main'
       run: |
+        mv -f report.html gh-pages/index.html
+        mv -f log.html gh-pages
+        cd gh-pages
         touch .nojekyll
-        cp report.html index.html
         git add *.html
         git config --local user.email "push@gha"
         git config --local user.name "GHA"
