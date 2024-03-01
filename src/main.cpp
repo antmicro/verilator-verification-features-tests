@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
         top->clk = 1 & ~top->clk;
         top->contextp()->timeInc(1);
         if (top->contextp()->time() > MAX_TIME) {
-            VL_WRITEF("Test timed out!");
+            VL_PRINTF("Test timed out!");
             return -15;
         }
     }
