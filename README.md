@@ -1,6 +1,6 @@
 # Verilator Verification Features Tests
 
-Copyright (c) 2022 [Antmicro](https://www.antmicro.com)
+Copyright (c) 2024 [Antmicro](https://www.antmicro.com)
 
 This repository contains tests for a number of verification features in
 Verilator:
@@ -52,7 +52,7 @@ tools manually. In order to do so through the provided build and run bash script
 execute the command below when you are within the repository directory:
 
 ```
-./scripts/build_and_run.sh {OPTIONAL_BUILD_OPTS}
+./scripts/build_and_run {OPTIONAL_BUILD_OPTS}
 ```
 
 This script runs the git initialization, Verilator builds, test generation, and
@@ -63,7 +63,7 @@ flow. Run the script with **-help** option to get more details on running specif
 steps within the flow.
 
 ```
-./scripts/build_and_run.sh --help
+./scripts/build_and_run --help
 ```
 
 # Parse arguments and run individual steps
