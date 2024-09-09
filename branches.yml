@@ -1,4 +1,6 @@
 master:
   - default
+axi-vip:
+  - uvm-testbenches
 randomize-constraints:
   - randomize-constraints
