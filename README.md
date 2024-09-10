@@ -95,16 +95,16 @@ robot *.robot
 
 All tests are divided into several test suites. The file `branches.yml` defines
 which suite is tested with which branch of Verilator. To generate tests for a
-specific branch of Verilator (e.g., `randomize-constraints`):
+specific branch of Verilator (let's call it `foo`):
 
 ```
-./gen-tests randomize-constraints
+./gen-tests foo
 ```
 
 Multiple branches can be passed:
 
 ```
-./gen-tests master randomize-constraints
+./gen-tests master foo
 ```
 
 Robot tests are generated from Jinja2 templates in the `templates` directory.
