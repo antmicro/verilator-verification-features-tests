@@ -608,7 +608,7 @@ input[type=radio]:checked{
 .messages .message{
     line-height:1.375em;
     padding:0 16px;
-    word-break:break-all
+    white-space:pre-wrap;
 }
 .message-row:hover .select-message div{
     background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABmJLR0QA/wD/AP+gvaeTAAAAkElEQVQoke2RsQkCQRBF3+yusiCoYHhoMzZjAWaXbBdajUXYgWBg4B1qtMk4JmKgK5wmJv7ww5v58ASA1M7ABYqRE2nUPreBupmitgMtc7AB5q9gjzNqaxBXxMy27y5+FWF5GBD7K8RiJ8IkE/JCqI8VTvYfvfPXSgBIzZDsfScoqpIml7sCGRP563gs+JWOG/6FQAtiIqzeAAAAAElFTkSuQmCC") center no-repeat;
