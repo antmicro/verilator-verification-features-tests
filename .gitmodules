@@ -8,7 +8,7 @@
 [submodule "uvm"]
 	path = uvm
 	url = https://github.com/antmicro/uvm-verilator.git
-	branch = current-patches
+	branch = current-patches-deprecated-api
 [submodule "tests/uvm-testbenches/axi-vip/axi-vip"]
 	path = tests/uvm-testbenches/axi-vip/axi-vip
 	url = https://github.com/antmicro/axi-vip
