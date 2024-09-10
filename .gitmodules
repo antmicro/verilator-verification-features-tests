@@ -1,10 +1,6 @@
 [submodule "verilator/master"]
 	path = verilator/master
 	url = https://github.com/verilator/verilator
-[submodule "verilator/randomize-constraints"]
-	path = verilator/randomize-constraints
-	url = https://github.com/antmicro/verilator-1
-	branch = randomize-constraints-crave
 [submodule "uvm"]
 	path = uvm
 	url = https://github.com/antmicro/uvm-verilator.git
