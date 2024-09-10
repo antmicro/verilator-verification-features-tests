@@ -24,7 +24,7 @@ jobs:
 
       - name: Make build matrix
         id: make_matrix
-        run: echo "::set-output name=matrix::$(ls verilator | jq -R -s -c 'split("\n")[:-1]')"
+        run: echo "matrix=$(ls verilator | jq -R -s -c 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
 
   test:
     name: Test branch ${{ matrix.VERILATOR_BRANCH }}
