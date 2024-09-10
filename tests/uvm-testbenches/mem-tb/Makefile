@@ -21,6 +21,7 @@ VERILOG_INCLUDE_DIRS = hdl ${UVM_ROOT}/src
 # -------------------------------------
 SIM_NAME ?= mem_tb
 SIM_DIR := $(SIM_NAME)-sim
+TEMPFILE := $(shell mktemp)
 COMPILE_ARGS += -DUVM_NO_DPI
 COMPILE_ARGS += --prefix $(SIM_NAME) -o $(SIM_NAME)
 COMPILE_ARGS += $(addprefix +incdir+, $(VERILOG_INCLUDE_DIRS))
@@ -45,7 +46,9 @@ $(SIM_DIR)/$(SIM_NAME): $(SIM_DIR)/$(SIM_NAME).mk
 	$(MAKE) -j${NPROC} -C $(SIM_DIR) $(BUILD_ARGS) -f $(SIM_NAME).mk
 
 simulate: $(SIM_DIR)/$(SIM_NAME).mk $(SIM_DIR)/$(SIM_NAME)
-	$(SIM_DIR)/$(SIM_NAME) +UVM_TESTNAME=$(UVM_TEST)
+	$(SIM_DIR)/$(SIM_NAME) +UVM_TESTNAME=$(UVM_TEST) | tee $(TEMPFILE)
+	@grep "^UVM_ERROR\\s*:\\s*0$$" $(TEMPFILE) -q
+	@grep "^UVM_FATAL\\s*:\\s*0$$" $(TEMPFILE) -q
 
 clean:
 	rm -rf simv*.daidir csrc
