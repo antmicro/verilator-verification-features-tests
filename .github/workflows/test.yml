@@ -63,7 +63,7 @@ jobs:
         sudo pip3 install robotframework
 
     - name: Cache $CCACHE_DIR
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ${{ env.CCACHE_DIR }}
         key: ${{ matrix.VERILATOR_BRANCH }}
