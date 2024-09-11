@@ -16,7 +16,7 @@ jobs:
       matrix: ${{ steps.make_matrix.outputs.matrix }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
@@ -24,7 +24,7 @@ jobs:
 
       - name: Make build matrix
         id: make_matrix
-        run: echo "::set-output name=matrix::$(ls verilator | jq -R -s -c 'split("\n")[:-1]')"
+        run: echo "matrix=$(ls verilator | jq -R -s -c 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
 
   test:
     name: Test branch ${{ matrix.VERILATOR_BRANCH }}
@@ -44,7 +44,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
         clean: false
@@ -63,7 +63,7 @@ jobs:
         sudo pip3 install robotframework
 
     - name: Cache $CCACHE_DIR
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ${{ env.CCACHE_DIR }}
         key: ${{ matrix.VERILATOR_BRANCH }}
@@ -107,7 +107,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
         clean: false
@@ -137,7 +137,7 @@ jobs:
 
     - name: Checkout GH Pages branch
       if: github.ref == 'refs/heads/main'
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         ref: gh-pages
         fetch-depth: 0
