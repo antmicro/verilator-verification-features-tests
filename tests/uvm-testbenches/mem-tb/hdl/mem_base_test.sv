@@ -38,7 +38,7 @@ class mem_model_base_test extends uvm_test;
   endfunction
 
   //---------------------------------------
-  // end_of_elobaration phase
+  // report_phase
   //---------------------------------------
  function void report_phase(uvm_phase phase);
    uvm_report_server svr;
