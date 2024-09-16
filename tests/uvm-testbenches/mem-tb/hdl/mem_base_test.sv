@@ -30,7 +30,7 @@ class mem_model_base_test extends uvm_test;
   endfunction : build_phase
 
   //---------------------------------------
-  // end_of_elobaration phase
+  // end_of_elaboration phase
   //---------------------------------------
   virtual function void end_of_elaboration();
     //print's the topology
@@ -38,7 +38,7 @@ class mem_model_base_test extends uvm_test;
   endfunction
 
   //---------------------------------------
-  // end_of_elobaration phase
+  // report_phase
   //---------------------------------------
  function void report_phase(uvm_phase phase);
    uvm_report_server svr;
