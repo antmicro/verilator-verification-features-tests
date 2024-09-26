@@ -9,7 +9,3 @@
 	path = tests/uvm-testbenches/axi-vip/axi-vip
 	url = https://github.com/antmicro/axi-vip
 	branch = verilator
-[submodule "verilator/uvm"]
-	path = verilator/axi-vip
-	url = https://github.com/antmicro/verilator
-	branch = basic-dist-honoring
