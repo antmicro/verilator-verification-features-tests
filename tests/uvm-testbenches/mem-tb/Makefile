@@ -30,7 +30,6 @@ WARNING_ARGS += -Wno-lint \
 	-Wno-style \
 	-Wno-SYMRSVDWORD \
 	-Wno-IGNOREDRETURN \
-	-Wno-CONSTRAINTIGN \
 	-Wno-ZERODLY
 
 # -------------------------------------
