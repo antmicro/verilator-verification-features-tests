@@ -20,7 +20,7 @@ VERILOG_INCLUDE_DIRS = hdl ${UVM_ROOT}/src
 # Compilation/simulation configuration
 # -------------------------------------
 SIM_NAME ?= mem_tb
-SIM_DIR := $(SIM_NAME)-sim
+SIM_DIR ?= $(SIM_NAME)-sim
 TEMPFILE := $(shell mktemp)
 COMPILE_ARGS += -DUVM_NO_DPI
 COMPILE_ARGS += --prefix $(SIM_NAME) -o $(SIM_NAME)
