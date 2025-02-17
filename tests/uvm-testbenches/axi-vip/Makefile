@@ -6,13 +6,14 @@ VERILATOR := verilator
 ifdef VERILATOR_ROOT
 VERILATOR := $(VERILATOR_ROOT)/bin/verilator
 endif
-UVM_ROOT ?=../../../uvm
+UVM_ROOT ?= ../../../uvm
+UVM_ROOT_ABS = ${shell realpath $(UVM_ROOT)}
 
 SIM_DIR := axi-vip-sim
 TOP_NAME := axi_vip
 BIN_NAME := axi-vip
 UVM_TEST ?= axi_wrap_test
-UVM_FILES := -I$(UVM_ROOT)/src $(UVM_ROOT)/src/uvm_pkg.sv
+UVM_FILES := -I$(UVM_ROOT_ABS)/src $(UVM_ROOT_ABS)/src/uvm_pkg.sv
 AXI_VIP_FILES := -f axi.f
 DEFINES := -DUVM_ENABLE_DEPRECATED_API -DUVM_NO_DPI
 WARNINGS = -Wno-lint -Wno-TIMESCALEMOD -Wno-SYMRSVDWORD -Wno-CONSTRAINTIGN
