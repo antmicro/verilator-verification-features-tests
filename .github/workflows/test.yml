@@ -11,7 +11,7 @@ on:
 jobs:
   matrix:
     name: Generate test matrix
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.make_matrix.outputs.matrix }}
     steps:
@@ -29,7 +29,7 @@ jobs:
   test:
     name: Test branch ${{ matrix.VERILATOR_BRANCH }}
     needs: matrix
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     strategy:
       fail-fast: false
@@ -93,7 +93,7 @@ jobs:
     name: Automerge dependabot pull requests
     needs: [test]
     if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     steps:
@@ -103,7 +103,7 @@ jobs:
   report:
     name: Generate test report
     needs: [test]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout
