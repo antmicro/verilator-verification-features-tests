@@ -6,7 +6,7 @@ VERILATOR := verilator
 ifdef VERILATOR_ROOT
 VERILATOR := $(VERILATOR_ROOT)/bin/verilator
 endif
-UVM_ROOT ?= ../../../uvm
+UVM_ROOT ?= ../../../uvm/uvm-2017
 UVM_ROOT_ABS = ${shell realpath $(UVM_ROOT)}
 
 SIM_DIR ?= $(shell pwd)/axi-vip-sim
