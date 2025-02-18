@@ -1,6 +1,6 @@
 all: simulate
 
-NPROC = $$((`nproc`-1))
+NPROC = $(shell nproc)
 
 # -------------------------------------
 # Testbench setup
