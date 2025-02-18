@@ -2,9 +2,13 @@
 	path = verilator/master
 	url = https://github.com/verilator/verilator
 [submodule "uvm"]
-	path = uvm
+	path = uvm/uvm-2017
 	url = https://github.com/antmicro/uvm-verilator.git
 	branch = current-patches-deprecated-api
+[submodule "uvm-1.2"]
+	path = uvm/uvm-1.2
+	url = https://github.com/antmicro/uvm-verilator.git
+	branch = uvm-1.2-current-patches
 [submodule "tests/uvm-testbenches/axi-vip/axi-vip"]
 	path = tests/uvm-testbenches/axi-vip/axi-vip
 	url = https://github.com/antmicro/axi-vip

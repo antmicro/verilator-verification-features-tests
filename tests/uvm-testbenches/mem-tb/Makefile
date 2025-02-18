@@ -1,6 +1,6 @@
 all: simulate
 
-NPROC = $$((`nproc`-1))
+NPROC = $(shell nproc)
 
 # -------------------------------------
 # Testbench setup
@@ -10,7 +10,7 @@ ifdef VERILATOR_ROOT
 VERILATOR := $(VERILATOR_ROOT)/bin/verilator
 endif
 
-UVM_ROOT ?=../../../uvm
+UVM_ROOT ?=../../../uvm/uvm-2017
 UVM_TEST ?= mem_wr_rd_test
 
 VERILOG_DEFINE_FILES = ${UVM_ROOT}/src/uvm.sv ./hdl/tbench_top.sv ./hdl/design.sv
@@ -20,9 +20,9 @@ VERILOG_INCLUDE_DIRS = hdl ${UVM_ROOT}/src
 # Compilation/simulation configuration
 # -------------------------------------
 SIM_NAME ?= mem_tb
-SIM_DIR := $(SIM_NAME)-sim
+SIM_DIR ?= $(SIM_NAME)-sim
 TEMPFILE := $(shell mktemp)
-COMPILE_ARGS += -DUVM_NO_DPI
+COMPILE_ARGS += --output-groups $(NPROC) -DUVM_NO_DPI
 COMPILE_ARGS += --prefix $(SIM_NAME) -o $(SIM_NAME)
 COMPILE_ARGS += $(addprefix +incdir+, $(VERILOG_INCLUDE_DIRS))
 EXTRA_ARGS += --timescale 1ns/1ps --error-limit 100
