@@ -23,7 +23,7 @@ TEMPFILE := $(shell mktemp)
 $(SIM_DIR)/$(BIN_NAME): $(shell find axi-vip -type f)
 	cd axi-vip && \
 		$(VERILATOR) --binary $(UVM_FILES) $(AXI_VIP_FILES) $(DEFINES) $(WARNINGS) $(OTHER_FLAGS) \
-		--verilate-jobs $(NPROC) --build-jobs $(NPROC) -Mdir $(SIM_DIR) --prefix $(TOP_NAME) -o $(BIN_NAME)
+		--output-groups $(NPROC) --verilate-jobs $(NPROC) --build-jobs $(NPROC) -Mdir $(SIM_DIR) --prefix $(TOP_NAME) -o $(BIN_NAME)
 
 simulate: $(SIM_DIR)/$(BIN_NAME)
 	$(SIM_DIR)/$(BIN_NAME) +UVM_TESTNAME=$(UVM_TEST) | tee $(TEMPFILE)
