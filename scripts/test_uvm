@@ -13,7 +13,7 @@ shift
 export PATH="$VERILATOR_ROOT/bin:$PATH"
 
 # we use relative paths in order to easily compare the output
-UVM_DIR=uvm/src
+UVM_DIR=uvm/uvm-2017/src
 
 SUITE_DIR=tests/$SUITE
 
