@@ -5,7 +5,7 @@ UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered wit
 UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
 UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
 UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
-UVM_INFO uvm/src/base/uvm_root.svh(449) @ 0: reporter [UVM/RELNOTES] 
+UVM_INFO uvm/uvm-2017/src/base/uvm_root.svh(449) @ 0: reporter [UVM/RELNOTES] 
   ***********       IMPORTANT RELEASE NOTES         ************
 
   This implementation of the UVM Library deviates from the 1800.2-2017
