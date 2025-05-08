@@ -6,19 +6,21 @@
 */
 
 module top (
-            input clk,
-            output int o
+            input clk
 );
-   int val;
+   int                 cnt0, cnt1, cnt10;
    initial begin
-   // Example
-     randcase
-        3: val = 3;
-        1: val = 1;
-        10: val = 10;
-     endcase
-   // Example end
-   end
+      repeat(1000) begin
+         randcase
+           0: cnt0++;
+           1: cnt1++;
+           10: cnt10++;
+         endcase
+      end
+      if (cnt0 != 0) $stop;
+      if (cnt1 == 0 || cnt1 > cnt10) $stop;
 
-   assign o = val;
+      $write("*-* All Finished *-*\n");
+      $finish;
+   end
 endmodule

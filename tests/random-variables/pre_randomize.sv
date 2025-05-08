@@ -20,8 +20,7 @@ class Cls;
 endclass
 
 module top (
-            input              clk,
-            output logic [7:0] o
+            input              clk
 );
     Cls obj;
     initial begin
@@ -29,10 +28,12 @@ module top (
        obj= new;
     // Example
        success = obj.randomize();
-       $display("did_something = %0b", obj.did_something);
+       if (success == 1 && obj.did_something) begin
+          $write("*-* All Finished *-*\n");
+          $finish;
+       end else begin
+          $stop;
+       end
     // Example end
     end
-
-    assign o = obj.val;
 endmodule
-
