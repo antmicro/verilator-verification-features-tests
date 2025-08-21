@@ -1,6 +1,6 @@
 # Verilator Verification Features Tests
 
-Copyright (c) 2024 [Antmicro](https://www.antmicro.com)
+Copyright (c) 2022-2025 [Antmicro](https://www.antmicro.com)
 
 This repository contains tests for a number of verification features in
 Verilator:
@@ -68,7 +68,7 @@ steps within the flow.
 
 # Parse arguments and run individual steps
 
-**{OPTINONAL_BUILD_OPTS}** are listed below:
+**{OPTIONAL_BUILD_OPTS}** are listed below:
 
 - **--setup** Sets up the submodules within this repository recursively.
 - **--build {TARGET}** Builds the TARGET Verilator branch. Using **--build all** builds
@@ -77,7 +77,7 @@ all the Verilator targets within the repository.
 Using **--gen-tests all** generates all the tests within the repository.
 - **--run-tests** Runs the generated tests and generates the reports.
 **[TBD] flags for this option.**
-- **--help** Lists the OPTINONAL_BUILD_OPTS of this script.
+- **--help** Lists the OPTIONAL_BUILD_OPTS of this script.
 
 
 ### Manually generate and run tests
