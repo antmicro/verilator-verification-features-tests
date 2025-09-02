@@ -2,7 +2,7 @@
 
 set -e
 
-REPO_DIR=$(dirname $( cd $(dirname $0) && pwd ))
+REPO_DIR=$(dirname $(cd $(dirname $0) && pwd))
 
 SUITE=$1
 shift
@@ -13,7 +13,7 @@ shift
 export PATH="$VERILATOR_ROOT/bin:$PATH"
 
 # we use relative paths in order to easily compare the output
-UVM_DIR=uvm/uvm-2017/src
+UVM_DIR=third-party/uvm-2017/src
 
 SUITE_DIR=tests/$SUITE
 
@@ -22,7 +22,7 @@ OUT_DIR=$REPO_DIR/out/$SUITE/uvm
 mkdir -p $OUT_DIR
 mkdir -p $REPO_DIR/out/$SUITE/$TEST
 
-verilator --binary $UVM_DIR/uvm.sv -I$UVM_DIR $SUITE_DIR/uvm_test.sv -Mdir $OUT_DIR --timing -DUVM_NO_DPI -Wno-lint -Wno-style -Wno-ZERODLY -Wno-SYMRSVDWORD --build-jobs `nproc` --prefix Vtop $@
+verilator --binary $UVM_DIR/uvm.sv -I$UVM_DIR $SUITE_DIR/uvm_test.sv -Mdir $OUT_DIR --timing -DUVM_NO_DPI -Wno-lint -Wno-style -Wno-ZERODLY -Wno-SYMRSVDWORD --build-jobs $(nproc) --prefix Vtop $@
 timeout 100 $OUT_DIR/Vtop +$TEST +verilator+quiet | tee ${TEST}_output.txt
 sed -i '/%Warning: System has stack size/d' ${TEST}_output.txt
 diff ${TEST}_output.txt $SUITE_DIR/expected_outputs/${TEST}_expected_output.txt

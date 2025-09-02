@@ -21,6 +21,7 @@ branch_filter = sys.argv[1:]
 def skip_branch(branch):
     return len(branch_filter) > 0 and branch not in branch_filter
 
+
 def skip_suite(suite):
     return suite in ["unsupported-signal-strengths", "functional-coverage"]
 
@@ -34,7 +35,7 @@ class Test:
         self.suite = suite
         self.name = name
         self.tmpl = tmpl
-        self.root = f'{repo_dir}/verilator/{branch}'
+        self.root = f'{repo_dir}/third-party/verilator/{branch}'
         self.tags = [f"Branch: '{branch}'"]
 
     def render(self):
@@ -63,7 +64,7 @@ for suite_name in os.listdir(test_dir):
     if suite_name == "uvm-tests":
         test_list = ["uvm_sequence", "uvm_resource_db", "uvm_test_run_test"]
         class_list = ["uvm_agent", "uvm_component", "uvm_driver", "uvm_env",
-                     "uvm_monitor", "uvm_scoreboard", "uvm_sequencer", "uvm_test"]
+                      "uvm_monitor", "uvm_scoreboard", "uvm_sequencer", "uvm_test"]
         test_list = test_list + [complexity + "_" + class_name for class_name in class_list
                                  for complexity in ["simple", "complex"]]
     else:
@@ -86,7 +87,7 @@ for suite_name in os.listdir(test_dir):
             suite = suites[suite_name] = {}
         # Finally, create test
         print(f"Adding test '{suite_name}/{test_name}' (branch: '{branch}'",
-            f", template: '{tmpl_path}'" if template != default_tmpl else "", ")", sep="")
+              f", template: '{tmpl_path}'" if template != default_tmpl else "", ")", sep="")
         suite[test_name] = Test(suite_name, test_name, template, branch)
 
 
@@ -101,7 +102,6 @@ with open('tags.yml', 'r') as f:
                     test = suite[test_name]
                     test.tags.append(tag)
             except KeyError: pass
-
 
 
 new_section()

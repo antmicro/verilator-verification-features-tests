@@ -19,7 +19,7 @@ and more.
 This repository contains several submodules that have their own submodules as
 well. In order to build properly, after cloning this repository, run
 the following command within the repository directory (not necessary if you
-use the **scripts/build_and_run.sh** script for executing the flow):
+use the **scripts/build-and-run.sh** script for executing the flow):
 
 ```
 git submodule update --init --recursive
@@ -52,18 +52,18 @@ tools manually. In order to do so through the provided build and run bash script
 execute the command below when you are within the repository directory:
 
 ```
-./scripts/build_and_run {OPTIONAL_BUILD_OPTS}
+./scripts/build-and-run {OPTIONAL_BUILD_OPTS}
 ```
 
 This script runs the git initialization, Verilator builds, test generation, and
 test run. If you would like to run specific commands within the flow, you may
-examine **.github/workflows/test.yml** or **scripts/build_and_run.sh**. Running the
+examine **.github/workflows/test.yml** or **scripts/build-and-run.sh**. Running the
 script without any **{OPTIONAL_BUILD_OPTS}** would execute all the steps in the
 flow. Run the script with **-help** option to get more details on running specific
 steps within the flow.
 
 ```
-./scripts/build_and_run --help
+./scripts/build-and-run --help
 ```
 
 # Parse arguments and run individual steps
