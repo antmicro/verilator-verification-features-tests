@@ -10,7 +10,7 @@ ifdef VERILATOR_ROOT
 VERILATOR := $(VERILATOR_ROOT)/bin/verilator
 endif
 
-UVM_ROOT ?=../../../uvm/uvm-2017
+UVM_ROOT ?=../../../third-party/uvm-2017
 UVM_TEST ?= mem_wr_rd_test
 
 VERILOG_DEFINE_FILES = ${UVM_ROOT}/src/uvm.sv ./hdl/tbench_top.sv ./hdl/design.sv

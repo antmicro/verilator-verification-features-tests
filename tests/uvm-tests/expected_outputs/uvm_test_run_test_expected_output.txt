@@ -5,7 +5,7 @@ UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered wit
 UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
 UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
 UVM_WARNING @ 0: reporter [TPRGED] Type name 'Simple#(E)' already registered with factory. No string-based lookup support for multiple types with the same type name.
-UVM_INFO uvm/uvm-2017/src/base/uvm_root.svh(449) @ 0: reporter [UVM/RELNOTES] 
+UVM_INFO third-party/uvm-2017/src/base/uvm_root.svh(449) @ 0: reporter [UVM/RELNOTES] 
   ***********       IMPORTANT RELEASE NOTES         ************
 
   This implementation of the UVM Library deviates from the 1800.2-2017
@@ -22,10 +22,10 @@ All Rights Reserved Worldwide
       (Specify +UVM_NO_RELNOTES to turn off this notice)
 
 UVM_INFO @ 0: reporter [RNTST] Running test MyUvmTest...
-UVM_INFO uvm/uvm-2017/src/base/uvm_traversal.svh(289) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
-UVM_WARNING uvm/uvm-2017/src/base/uvm_traversal.svh(274) @ 0: reporter [UVM/COMP/NAME] the name "uvm_test_top" of the component "uvm_test_top" violates the uvm component name constraints
+UVM_INFO third-party/uvm-2017/src/base/uvm_traversal.svh(289) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING third-party/uvm-2017/src/base/uvm_traversal.svh(274) @ 0: reporter [UVM/COMP/NAME] the name "uvm_test_top" of the component "uvm_test_top" violates the uvm component name constraints
 UVM_INFO tests/uvm-tests/uvm_test.sv(144) @ 0: uvm_test_top [RESULT] SUCCESS, MyUvmTest called
-UVM_INFO uvm/uvm-2017/src/base/uvm_report_server.svh(864) @ 0: reporter [UVM/REPORT/SERVER] 
+UVM_INFO third-party/uvm-2017/src/base/uvm_report_server.svh(864) @ 0: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
@@ -41,4 +41,4 @@ UVM_FATAL :    0
 [UVM/COMP/NAMECHECK]     1
 [UVM/RELNOTES]     1
 
-- uvm/uvm-2017/src/base/uvm_root.svh:585: Verilog $finish
+- third-party/uvm-2017/src/base/uvm_root.svh:585: Verilog $finish

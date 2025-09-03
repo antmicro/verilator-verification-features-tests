@@ -24,7 +24,7 @@ jobs:
 
       - name: Make build matrix
         id: make_matrix
-        run: echo "matrix=$(ls verilator | jq -R -s -c 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
+        run: echo "matrix=$(ls third-party/verilator | jq -R -s -c 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
 
   test:
     name: Test branch ${{ matrix.VERILATOR_BRANCH }}
@@ -69,19 +69,19 @@ jobs:
         key: ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Setup repository
-      run: scripts/build_and_run --setup
+      run: scripts/build-and-run --setup
 
     - name: Build Verilator
       env:
         CC: gcc-11
         CXX: g++-11
-      run: scripts/build_and_run --build ${{ matrix.VERILATOR_BRANCH }}
+      run: scripts/build-and-run --build ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Generate Robot test files
-      run: scripts/build_and_run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
+      run: scripts/build-and-run --gen-tests ${{ matrix.VERILATOR_BRANCH }}
 
     - name: Run tests
-      run: scripts/build_and_run --run-tests
+      run: scripts/build-and-run --run-tests
 
     - name: Upload test output
       uses: actions/upload-artifact@v4
@@ -125,7 +125,7 @@ jobs:
     - name: Create report
       run: |
         mv output-*/*.xml .
-        scripts/build_and_run --gen-report
+        scripts/build-and-run --gen-report
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
