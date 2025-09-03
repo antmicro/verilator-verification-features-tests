@@ -7,7 +7,7 @@
 class Cls;
   // Example
   rand byte A[5] ;
-  constraint C2 { foreach ( A [ j ] ) A[j] > 5 * j; }
+  constraint C2 { foreach ( A [ j ] ) int'(A[j]) > 5 * j; }
   // Example end
 endclass
 

@@ -23,9 +23,9 @@ module t (input logic clk);
       `checkh(qi.size(), 3);
 
       qv = q.min(x) with (x + 1);
-      v = $sformatf("%p", qv); `checks(v, "'{'h1} ");
+      v = $sformatf("%p", qv); `checks(v, "'{'h1}");
       qv = q.max(x) with ((x % 4) + 100);
-      v = $sformatf("%p", qv); `checks(v, "'{'h3} ");
+      v = $sformatf("%p", qv); `checks(v, "'{'h3}");
 
       $write("*-* All Finished *-*\n");
       $finish;
