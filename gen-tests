@@ -23,7 +23,10 @@ def skip_branch(branch):
 
 
 def skip_suite(suite):
-    return suite in ["unsupported-signal-strengths", "functional-coverage"]
+    skipped = ["unsupported-signal-strengths", "functional-coverage"]
+    if not os.getenv('UVM_COOKBOOK'):
+        skipped.append("uvm-cookbook")
+    return suite in skipped
 
 
 def new_section():
