@@ -3,5 +3,6 @@
 /*.robot
 
 out
+!output-master/uvm-cookbook.xml
 
 robot_tests

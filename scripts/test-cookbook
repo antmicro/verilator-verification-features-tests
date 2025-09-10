@@ -1,0 +1,78 @@
+#!/bin/bash
+set -e
+
+if [[ -z "${UVM_COOKBOOK}" ]]; then
+    echo "Error: UVM_COOKBOOK environment variable is not set."
+    echo "Set it to point to the directory containing UVM Cookbook examples."
+fi
+
+if [[ -z "$1" ]]; then
+    echo "Usage: $0 <test-directory>"
+    exit 1
+fi
+
+REPO_DIR=$(dirname $(cd $(dirname $0) && pwd))
+TEST_DIR="$REPO_DIR/tests/uvm-cookbook/$1"
+TEST_CONFIG="$TEST_DIR/test_config.sh"
+UVM_DIR="$REPO_DIR/third-party/uvm-2017/src"
+UVM_DIR_1_2="$REPO_DIR/third-party/uvm-1.2/src"
+export VERILATOR_ROOT="$REPO_DIR/$2"
+export PATH="$VERILATOR_ROOT/bin:$PATH"
+
+if [[ ! -f "$TEST_CONFIG" ]]; then
+    echo "Error: test_config.sh not found in $TEST_DIR"
+    exit 1
+fi
+
+# Setup configs
+GLOBAL_DISABLED_WARNINGS="\
+    -Wno-ZERODLY \
+    -Wno-SYMRSVDWORD \
+    -Wno-style \
+    -Wno-SIDEEFFECT \
+    -Wno-NONSTD \
+    -Wno-MULTITOP \
+    -Wno-lint \
+    -Wno-LATCH \
+    -Wno-CONSTRAINTIGN \
+    -Wno-REDEFMACRO \
+    -Wno-INITIALDLY \
+    -Wno-IGNOREDRETURN \
+    -Wno-BLKANDNBLK \
+    -Wno-TIMESCALEMOD \
+    -Wno-COVERIGN"
+
+GLOBAL_VERILATOR_FLAGS="\
+    --binary \
+    --Mdir verilator_obj_dir \
+    --error-limit 15 \
+    -j $(nproc) \
+    +define+UVM_NO_DPI \
+    +incdir+$UVM_DIR \
+    $UVM_DIR/uvm_pkg.sv"
+
+source "$TEST_CONFIG"
+TEST_DIR="$REPO_DIR/third-party/$UVM_COOKBOOK/uvm_code_examples/$TEST_NAME"
+
+# Compose flags
+DISABLED_WARNINGS="$GLOBAL_DISABLED_WARNINGS $TEST_DISABLED_WARNINGS"
+VERILATOR_FLAGS="$GLOBAL_VERILATOR_FLAGS $TEST_VERILATOR_FLAGS"
+
+echo "Running test: $TEST_NAME"
+
+pushd "$TEST_DIR" >/dev/null
+
+# Compile
+verilator \
+    $VERILATOR_FLAGS \
+    $DISABLED_WARNINGS \
+    $SRC_FILES
+
+# Run simulation
+args="${SIM_ARGS:-${SIM_ARGS_1:-}}"
+echo "  sim run #1 args: '$args'"
+TEMPFILE=$(mktemp)
+./verilator_obj_dir/Vuvm_pkg $args | tee $TEMPFILE
+grep "TEST PASSED" $TEMPFILE -q
+
+popd >/dev/null
