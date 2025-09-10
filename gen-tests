@@ -42,7 +42,13 @@ class Test:
         self.tags = [f"Branch: '{branch}'"]
 
     def render(self):
-        return self.tmpl.render(verilator_root=self.root, suite=self.suite, test=self.name, tags='    '.join(self.tags))
+        uvm_cookbook = os.path.abspath(os.getenv('UVM_COOKBOOK', ''))
+        return self.tmpl.render(
+            verilator_root=self.root,
+            suite=self.suite,
+            test=self.name,
+            tags='    '.join(self.tags),
+            uvm_cookbook=uvm_cookbook)
 
     def makedirs(self):
         os.makedirs(f'out/{self.suite}/{self.name}', exist_ok=True)
