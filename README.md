@@ -1,9 +1,8 @@
-# Verilator Verification Features Tests
+# Verilator Verification Test Suite
 
 Copyright (c) 2022-2025 [Antmicro](https://www.antmicro.com)
 
-This repository contains tests for a number of verification features in
-Verilator:
+A test dashboard for a number of verification features in Verilator:
 
 * concurrent assertions,
 * functional coverage,
