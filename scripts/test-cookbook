@@ -1,13 +1,8 @@
 #!/bin/bash
 set -e
 
-if [[ -z "${UVM_COOKBOOK}" ]]; then
-    echo "Error: UVM_COOKBOOK environment variable is not set."
-    echo "Set it to point to the directory containing UVM Cookbook examples."
-fi
-
-if [[ -z "$1" ]]; then
-    echo "Usage: $0 <test-directory>"
+if [[ -z "$1" ]] || [[ -z "$2" ]] || [[ -z "$3" ]]; then
+    echo "Usage: $0 <test-directory> <verilator-root> <uvm-cookbook>"
     exit 1
 fi
 
@@ -17,6 +12,7 @@ TEST_CONFIG="$TEST_DIR/test_config.sh"
 UVM_DIR="$REPO_DIR/third-party/uvm-2017/src"
 UVM_DIR_1_2="$REPO_DIR/third-party/uvm-1.2/src"
 export VERILATOR_ROOT="$REPO_DIR/$2"
+export UVM_COOKBOOK="$3"
 export PATH="$VERILATOR_ROOT/bin:$PATH"
 
 if [[ ! -f "$TEST_CONFIG" ]]; then
@@ -52,7 +48,7 @@ GLOBAL_VERILATOR_FLAGS="\
     $UVM_DIR/uvm_pkg.sv"
 
 source "$TEST_CONFIG"
-TEST_DIR="$REPO_DIR/third-party/$UVM_COOKBOOK/uvm_code_examples/$TEST_NAME"
+TEST_DIR="$UVM_COOKBOOK/uvm_code_examples/$TEST_NAME"
 
 # Compose flags
 DISABLED_WARNINGS="$GLOBAL_DISABLED_WARNINGS $TEST_DISABLED_WARNINGS"
